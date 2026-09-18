@@ -399,11 +399,60 @@
   <div class="sectionno" style="background:var(--green);color:#000">01</div>
 </section>
 
-<!-- 15. Нода -->
+<!-- 15. Что такое ComfyUI -->
 <section>
-  <h2>Нода</h2>
+  <h2>Что такое ComfyUI</h2>
+  <div class="split wide-right">
+    <div class="txtcol" style="display:flex;flex-direction:column;justify-content:center;align-items:center">
+      <ul class="bullets">
+        <li style="font-size:19px">Открытый интерфейс к&nbsp;генеративным моделям&nbsp;&mdash; Flux, Stable Diffusion и&nbsp;другим</li>
+        <li style="font-size:19px">Работает локально: картинки никуда не&nbsp;уходят</li>
+        <li style="font-size:19px">Воркфлоу&nbsp;&mdash; обычный <code>.json</code>: перетащил файл&nbsp;&mdash; схема собралась</li>
+        <li style="font-size:19px">Бесплатно, без&nbsp;подписок и&nbsp;лимитов</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="assets/comfyui_preview.jpg" alt="Сайт ComfyUI — каталог воркфлоу"
+         style="max-height:590px"></div>
+  </div>
+  <aside class="notes">
+    Одним абзацем: ComfyUI — это программа на компьютере, которая умеет рисовать
+    через локально установленные модели. Главная фишка — воркфлоу как файл:
+    чужую схему можно открыть у себя одним перетаскиванием.
+  </aside>
+</section>
+
+<!-- 16. Как поставить себе домой -->
+<section>
+  <h2>Как поставить себе домой</h2>
+  <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:center;flex:1 1 auto;min-height:0">
+    <div class="txtcol" style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:30px">
+      <ul class="bullets">
+        <li><b>Stability Matrix</b> сам скачает ComfyUI</li>
+        <li>Внутри ComfyUI&nbsp;&mdash; <b>Manager</b> для моделей</li>
+        <li>Всё считается на своей видеокарте</li>
+      </ul>
+      <div class="qr stack" style="align-items:center">
+        <div class="code" data-qr="pagesUrl" style="width:170px;height:170px;transform:none"></div>
+        <div class="cap" style="text-align:center">
+          Инструкция и оба воркфлоу
+          <span class="url" data-url="pagesUrl"></span>
+        </div>
+      </div>
+    </div>
+    <div class="pic"><img src="assets/stability-matrix.png" alt="Stability Matrix предлагает выбрать интерфейс — среди них ComfyUI"
+         style="max-height:590px"></div>
+  </div>
+  <aside class="notes">
+    Бесплатно, без подписок и лимитов. Картинки никуда не уходят — всё локально.
+    Сказать про требования: видеокарта NVIDIA, 8 ГБ видеопамяти хватит для модели 4B.
+  </aside>
+</section>
+
+<!-- 17. Узел -->
+<section>
+  <h2>Узел</h2>
   <div class="split wide-left">
-    <div class="pic"><img src="assets/crop_node.png" alt="Крупный план ноды «Загрузить изображение»"></div>
+    <div class="pic"><img src="assets/crop_node.png" alt="Крупный план узла «Загрузить изображение»"></div>
     <div class="txtcol">
       <ul class="bullets tight">
         <li>Название</li>
@@ -413,31 +462,30 @@
     </div>
   </div>
   <aside class="notes">
-    Одна нода — одно действие. Эта просто открывает картинку с диска.
+    Один узел — одно действие. Этот просто открывает картинку с диска.
     Показать пальцем: заголовок, крутилки, точки по бокам.
   </aside>
 </section>
 
-<!-- 16. Провода -->
+<!-- 18. Провода -->
 <section>
   <h2>Провода</h2>
   <div class="split wide-left">
-    <div class="pic"><img src="assets/crop_wires.png" alt="Провода между нодами в ComfyUI"></div>
+    <div class="pic"><img src="assets/crop_wires.png" alt="Провода между узлами в ComfyUI"></div>
     <div class="txtcol">
       <ul class="bullets tight">
-        <li>Цвет&nbsp;&mdash; это тип данных</li>
-        <li>Картинка, текст, модель</li>
-        <li>Не тот тип&nbsp;&mdash; не соединится</li>
+        <li>Связывают данные между узлами</li>
+        <li>Одни и те же данные можно направить во&nbsp;множество узлов одновременно</li>
       </ul>
     </div>
   </div>
   <aside class="notes">
-    Показать, как тянется провод. Попробовать воткнуть картинку в текстовый вход —
-    ComfyUI не даст. Это и есть защита от ошибок.
+    Показать, как тянется провод и как один выход разводится на несколько узлов.
+    Данные при этом не «расходуются» — картинка может пойти и в превью, и в следующую ноду.
   </aside>
 </section>
 
-<!-- 17. Весь воркфлоу -->
+<!-- 19. Весь воркфлоу -->
 <section class="figure-full invert" data-background-color="#1e1e1e">
   <img src="ComfyUI_Workflows/screenshots/meme_generation_workflow.png"
        alt="Полный воркфлоу генерации мема в ComfyUI">
@@ -447,7 +495,7 @@
   </aside>
 </section>
 
-<!-- 18. Что внутри модели -->
+<!-- 20. Что внутри модели -->
 <section>
   <h2>Что внутри модели</h2>
   <div class="cards c3">
@@ -474,7 +522,7 @@
   </aside>
 </section>
 
-<!-- 19. Откуда берутся модели -->
+<!-- 21. Откуда берутся модели -->
 <section>
   <h2>Откуда берутся модели</h2>
   <div class="split wide-right">
@@ -502,7 +550,7 @@
   </aside>
 </section>
 
-<!-- 20. Сабграф -->
+<!-- 22. Сабграф -->
 <section>
   <h2>Сабграф</h2>
   <div class="split wide-left">
@@ -520,36 +568,11 @@
   </aside>
 </section>
 
-<!-- 21. Как поставить себе домой -->
-<section>
-  <h2>Как поставить себе домой</h2>
-  <div class="split wide-left">
-    <div class="txtcol">
-      <ul class="bullets">
-        <li><b>Stability Matrix</b> сам скачает ComfyUI</li>
-        <li>Внутри ComfyUI&nbsp;&mdash; <b>Manager</b> для моделей</li>
-        <li>Всё считается на своей видеокарте</li>
-      </ul>
-    </div>
-    <div class="qr stack">
-      <div class="code" data-qr="pagesUrl"></div>
-      <div class="cap">
-        Инструкция и оба воркфлоу
-        <span class="url" data-url="pagesUrl"></span>
-      </div>
-    </div>
-  </div>
-  <aside class="notes">
-    Бесплатно, без подписок и лимитов. Картинки никуда не уходят — всё локально.
-    Сказать про требования: видеокарта NVIDIA, 8 ГБ видеопамяти хватит для модели 4B.
-  </aside>
-</section>
-
 <!-- ======================================================================
      ДЕМО
      ====================================================================== -->
 
-<!-- 22. Переход к демо -->
+<!-- 23. Переход к демо -->
 <section class="hero invert" data-background-color="#000000">
   <div class="deco" style="right:60px;bottom:60px;width:230px">
     <img src="assets/template/play.png" alt="">
@@ -560,7 +583,7 @@
   </aside>
 </section>
 
-<!-- 23. Что происходит на демо -->
+<!-- 24. Что происходит на демо -->
 <section>
   <h2>Что сейчас на экране</h2>
   <div class="steps">
@@ -596,7 +619,7 @@
      СТРАНИЦА МАНГИ
      ====================================================================== -->
 
-<!-- 24. Разделитель 02 -->
+<!-- 25. Разделитель 02 -->
 <section class="divider invert" data-background-color="#000000">
   <div class="band" style="background:var(--blue)">
     <h2>А теперь &mdash;<br>целая страница манги</h2>
@@ -604,7 +627,7 @@
   <div class="sectionno" style="background:var(--red)">02</div>
 </section>
 
-<!-- 25. Результат -->
+<!-- 26. Результат -->
 <section class="figure-full">
   <img src="assets/final_page.png" alt="Готовая страница манги, собранная в ComfyUI">
   <div class="figcap left">1440 &times; 2032</div>
@@ -614,7 +637,7 @@
   </aside>
 </section>
 
-<!-- 26. Из чего собрана -->
+<!-- 27. Из чего собрана -->
 <section>
   <h2>Из чего она собрана</h2>
   <div class="timeline">
@@ -630,7 +653,7 @@
     </div>
     <div class="step">
       <div class="n">03</div>
-      <div class="cap">Баблы</div>
+      <div class="cap">Реплики</div>
       <div class="txt">Вторым проходом</div>
     </div>
     <div class="step">
@@ -641,7 +664,7 @@
   </div>
 </section>
 
-<!-- 27. Приём 1: Canny -->
+<!-- 28. Приём 1: Canny -->
 <section>
   <h2>Приём 1: поза с фотографии</h2>
   <div class="split wide-left">
@@ -660,7 +683,7 @@
   </aside>
 </section>
 
-<!-- 28. Приём 2: кроп лиц -->
+<!-- 29. Приём 2: кроп лиц -->
 <section>
   <h2>Приём 2: лицо отдельно от рук</h2>
   <div class="split wide-left">
@@ -679,12 +702,12 @@
   </aside>
 </section>
 
-<!-- 29. Приём 3: баблы -->
+<!-- 30. Приём 3: реплики -->
 <section>
-  <h2>Приём 3: баблы вторым проходом</h2>
+  <h2>Приём 3: реплики вторым проходом</h2>
   <div class="split">
     <div class="pic"><img src="ComfyUI_Workflows/screenshots/text_bubbles_pipeline.png"
-                          alt="Пайплайн: на готовый кадр дорисовывается речевой бабл"></div>
+                          alt="Пайплайн: на готовый кадр дорисовывается речевая реплика"></div>
     <div class="txtcol">
       <ul class="bullets tight">
         <li>Сначала чистый кадр</li>
@@ -695,12 +718,12 @@
     </div>
   </div>
   <aside class="notes">
-    За один проход модель почти всегда пишет в бабле абракадабру.
+    За один проход модель почти всегда пишет в реплике абракадабру.
     Вторым проходом текст задаётся дословно, и кадр не портится.
   </aside>
 </section>
 
-<!-- 30. Приём 4: сборка -->
+<!-- 31. Приём 4: сборка -->
 <section>
   <h2>Приём 4: сборка страницы</h2>
   <div class="split wide-left">
@@ -719,7 +742,7 @@
   </aside>
 </section>
 
-<!-- 31. 5 против 40 -->
+<!-- 32. 5 против 40 -->
 <section>
   <h2>Мем и страница манги</h2>
   <div class="duo">
@@ -739,7 +762,7 @@
   </aside>
 </section>
 
-<!-- 32. Честно про время -->
+<!-- 33. Честно про время -->
 <section class="hero">
   <div class="deco" style="right:-20px;bottom:-10px;width:430px">
     <img src="assets/template/person-tired.png" alt="">
@@ -756,7 +779,7 @@
      ФИНАЛ
      ====================================================================== -->
 
-<!-- 33. Границы -->
+<!-- 34. Границы -->
 <section>
   <h2>Честно о границах</h2>
   <div class="compare">
@@ -783,7 +806,7 @@
   </aside>
 </section>
 
-<!-- 34. Q&A + QR -->
+<!-- 35. Q&A + QR -->
 <section class="qa">
   <img class="qa-img" src="assets/template/qa.png" alt="Q&amp;A">
   <div class="qr">
