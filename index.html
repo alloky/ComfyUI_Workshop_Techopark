@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ComfyUI: собираем нейросеть, как конструктор</title>
+<meta name="description" content="Материалы мастер-класса по ComfyUI для школьников: презентация, воркфлоу и инструкция по установке. Технопарк МФТИ.">
+<meta name="theme-color" content="#00e160">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="stylesheet" href="presentation/fonts/manrope.css">
+<style>
+:root{
+  --black:#000;
+  --white:#fff;
+  --green:#00e160;
+  --purple:#965eeb;
+  --blue:#05aaff;
+  --red:#ff3f53;
+  --grey:#757575;
+  --paper:#f2f2f2;
+  --green-tint:#c9ffbf;
+  --purple-tint:#dfcef3;
+  --blue-tint:#badafc;
+  --red-tint:#f8c1c6;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--black);
+  font-family:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+  font-size:17px;
+  font-weight:500;
+  line-height:1.45;
+  letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{max-width:100%;display:block}
+a{color:inherit}
+
+.wrap{
+  width:100%;
+  max-width:840px;
+  margin:0 auto;
+  padding:22px 18px 64px;
+}
+
+/* ---------- шапка ---------- */
+
+.chips{display:flex;gap:8px;margin-bottom:22px}
+.chips i{width:22px;height:22px;border-radius:4px;display:block}
+.chips i:nth-child(1){background:var(--green)}
+.chips i:nth-child(2){background:var(--purple)}
+.chips i:nth-child(3){background:var(--blue)}
+.chips i:nth-child(4){background:var(--red)}
+
+h1{
+  font-size:32px;
+  font-weight:800;
+  line-height:1.08;
+  letter-spacing:-.03em;
+  margin:0 0 12px;
+}
+
+.sub{
+  margin:0 0 26px;
+  font-size:17px;
+  font-weight:600;
+  color:var(--grey);
+}
+
+/* ---------- кнопки ---------- */
+
+.actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:38px;
+}
+
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  min-height:62px;
+  padding:16px 20px;
+  border-radius:14px;
+  font-size:19px;
+  font-weight:800;
+  text-decoration:none;
+  line-height:1.15;
+  transition:transform .12s ease, filter .12s ease;
+}
+
+.btn:active{transform:scale(.985)}
+
+.btn .arrow{font-size:22px;flex:0 0 auto;opacity:.65}
+
+.btn.primary{background:var(--green);color:var(--black)}
+.btn.secondary{background:var(--black);color:var(--white)}
+.btn.ghost{background:var(--paper);color:var(--black)}
+
+/* ---------- секции ---------- */
+
+section{margin-bottom:40px}
+
+h2{
+  font-size:23px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  margin:0 0 14px;
+}
+
+p{margin:0 0 14px}
+p:last-child{margin-bottom:0}
+
+.muted{color:var(--grey)}
+.small{font-size:15px}
+
+/* ---------- галерея ---------- */
+
+.gallery{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.shot{
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--paper);
+}
+
+.shot img{width:100%;height:auto}
+
+.shot .cap{
+  padding:10px 14px 12px;
+  font-size:14px;
+  color:var(--grey);
+}
+
+/* ---------- список файлов ---------- */
+
+.files{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.files a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 16px;
+  border-radius:12px;
+  background:var(--paper);
+  text-decoration:none;
+  font-weight:700;
+  min-height:56px;
+}
+
+.files a .what{font-size:16px;line-height:1.25}
+.files a .what small{
+  display:block;
+  font-size:13px;
+  font-weight:500;
+  color:var(--grey);
+  margin-top:2px;
+}
+
+.dot{width:14px;height:14px;border-radius:3px;flex:0 0 auto}
+.dot.green{background:var(--green)}
+.dot.purple{background:var(--purple)}
+.dot.blue{background:var(--blue)}
+.dot.red{background:var(--red)}
+
+/* ---------- шаги установки ---------- */
+
+.steps{
+  list-style:none;
+  margin:0 0 18px;
+  padding:0;
+  counter-reset:s;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.steps li{
+  counter-increment:s;
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+
+.steps li::before{
+  content:counter(s);
+  flex:0 0 auto;
+  width:30px;height:30px;
+  border-radius:8px;
+  background:var(--black);
+  color:var(--white);
+  font-size:15px;
+  font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+
+.steps li:nth-child(1)::before{background:var(--green);color:var(--black)}
+.steps li:nth-child(2)::before{background:var(--purple)}
+.steps li:nth-child(3)::before{background:var(--blue)}
+.steps li:nth-child(4)::before{background:var(--red)}
+
+.steps .txt{padding-top:3px;font-size:16px}
+
+code{
+  font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;
+  font-size:.88em;
+  background:var(--paper);
+  border-radius:5px;
+  padding:.12em .36em;
+}
+
+/* ---------- футер ---------- */
+
+footer{
+  border-top:2px solid var(--paper);
+  padding-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+footer img{width:112px;opacity:.85}
+
+footer .note{font-size:14px;color:var(--grey)}
+
+/* ---------- планшет и десктоп ---------- */
+
+@media (min-width:640px){
+  body{font-size:18px}
+  .wrap{padding:40px 28px 80px}
+  h1{font-size:46px}
+  .sub{font-size:19px}
+  .actions{flex-direction:row}
+  .actions .btn{flex:1 1 0}
+  h2{font-size:27px}
+  .gallery{grid-template-columns:1fr 1fr;align-items:start}
+  footer{flex-direction:row;align-items:center;justify-content:space-between}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="chips"><i></i><i></i><i></i><i></i></div>
+    <h1>ComfyUI: собираем нейросеть, как конструктор</h1>
+    <p class="sub">Мастер-класс &middot; Технопарк МФТИ</p>
+  </header>
+
+  <div class="actions">
+    <a class="btn primary" href="presentation.html">
+      <span>Открыть презентацию</span>
+      <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="btn secondary" href="#" data-url="repoUrl">
+      <span>Репозиторий на GitHub</span>
+      <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+
+  <section>
+    <h2>Что мы собирали</h2>
+    <p class="muted small">Обе картинки нарисованы моделью Flux.2&nbsp;Klein прямо в ComfyUI, без единого кадра из интернета.</p>
+    <div class="gallery">
+      <figure class="shot" style="margin:0">
+        <img src="assets/final_page.png" alt="Готовая страница манги из трёх кадров" loading="lazy">
+        <figcaption class="cap">Страница манги: три кадра, баблы, спидлайны</figcaption>
+      </figure>
+      <figure class="shot" style="margin:0">
+        <img src="ComfyUI_Workflows/screenshots/meme_generation_workflow.png" alt="Воркфлоу генерации мема в ComfyUI" loading="lazy">
+        <figcaption class="cap">Мем из пяти кубиков&nbsp;&mdash; весь воркфлоу целиком</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Скачать воркфлоу</h2>
+    <p class="muted small">Файл нужно просто перетащить в окно ComfyUI&nbsp;&mdash; схема соберётся сама.</p>
+    <ul class="files">
+      <li>
+        <a href="ComfyUI_Workflows/meme_generation_example_workflow.json" download>
+          <span class="dot green"></span>
+          <span class="what">Мем: перерисовать людей в персонажей
+            <small>5 нод &middot; с этого проще всего начать</small>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="ComfyUI_Workflows/manga_page_3_panels_v2.json" download>
+          <span class="dot blue"></span>
+          <span class="what">Страница манги из трёх кадров
+            <small>40 нод &middot; Canny, кроп лиц, баблы вторым проходом, сборка страницы</small>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Как поставить себе</h2>
+    <ol class="steps">
+      <li><span class="txt">Ставим <b>Stability Matrix</b>&nbsp;&mdash; он сам скачает и настроит ComfyUI</span></li>
+      <li><span class="txt">В Stability Matrix: <b>Packages &rarr; Add Package &rarr; ComfyUI</b></span></li>
+      <li><span class="txt">Внутри ComfyUI включаем <b>Manager</b> и через него качаем модели</span></li>
+      <li><span class="txt">Открываем скачанный <code>.json</code>&nbsp;&mdash; и жмём Run</span></li>
+    </ol>
+    <a class="btn ghost" href="#" data-url="repoUrl">
+      <span>Подробная инструкция в README</span>
+      <span class="arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </section>
+
+  <footer>
+    <img src="assets/avito-start-logo.png" alt="Avito Start">
+    <p class="note">Материалы мастер-класса. Воркфлоу можно свободно использовать и переделывать.</p>
+  </footer>
+
+</div>
+
+<script src="config.js"></script>
+<script>
+  // подставляем ссылки из config.js
+  document.querySelectorAll('[data-url]').forEach(function (el) {
+    var cfg = window.WORKSHOP || {};
+    var url = cfg[el.getAttribute('data-url')];
+    if (url) { el.href = url; }
+  });
+</script>
+</body>
+</html>

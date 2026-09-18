@@ -1,0 +1,6633 @@
+{
+  "id": "684fb5af-2825-4f44-9e35-5e07a1ecb754",
+  "revision": 0,
+  "last_node_id": 179,
+  "last_link_id": 275,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [
+        -1500,
+        -300
+      ],
+      "size": [
+        400,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            200,
+            247,
+            250,
+            256,
+            262
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "flux-2-klein-9b-fp8.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "flux-2-klein-9b-fp8.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        -1500,
+        -170
+      ],
+      "size": [
+        400,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2,
+            14,
+            26,
+            251,
+            257,
+            263
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "qwen_3_8b_fp8mixed.safetensors",
+        "flux2",
+        "cpu"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen_3_8b_fp8mixed.safetensors",
+        "type": "flux2",
+        "device": "cpu"
+      }
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        -1500,
+        -20
+      ],
+      "size": [
+        400,
+        60
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3,
+            15,
+            27,
+            252,
+            258,
+            264
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "flux2-vae.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "flux2-vae.safetensors"
+      }
+    },
+    {
+      "id": 10,
+      "type": "StringConcatenate",
+      "pos": [
+        -520,
+        -300
+      ],
+      "size": [
+        300,
+        166
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 4
+        },
+        {
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "title": "текст + стиль",
+      "properties": {
+        "Node name for S&R": "StringConcatenate",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "",
+        " "
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "",
+        "delimiter": " "
+      }
+    },
+    {
+      "id": 12,
+      "type": "LoadImage",
+      "pos": [
+        -414.7797411818305,
+        -885.2375068155161
+      ],
+      "size": [
+        300,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            235
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "кадр 1: реф 1",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "w1500_38113050.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "w1500_38113050.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 4,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -1500,
+        90
+      ],
+      "size": [
+        400,
+        160
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            5,
+            17,
+            29
+          ]
+        }
+      ],
+      "title": "ОБЩИЙ СТИЛЬ (дописывается ко всем кадрам)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "bright colorful manga art, screentone shading, clean ink lines, high contrast, smooth gradients in background"
+      ],
+      "widgets_values_named": {
+        "value": "bright colorful manga art, screentone shading, clean ink lines, high contrast, smooth gradients in background"
+      }
+    },
+    {
+      "id": 139,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        -1500,
+        200
+      ],
+      "size": [
+        400,
+        90
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 200
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            248,
+            249
+          ]
+        }
+      ],
+      "title": "refcontrol canny LoRA",
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "flux2_klein_9b_refcontrol_canny.safetensors",
+        1
+      ],
+      "widgets_values_named": {
+        "lora_name": "flux2_klein_9b_refcontrol_canny.safetensors",
+        "strength_model": 1
+      }
+    },
+    {
+      "id": 21,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -1212.337553560156,
+        1339.5361089471464
+      ],
+      "size": [
+        420,
+        220
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "title": "Текст кадра 3",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "refcontrol. Follow the exact hand shape and finger positions from image 1. Take the costume colours and the art style from image 2.\n\nDramatic extreme close-up. A single white-gloved right hand fills the frame at the instant of a finger snap: the thumb slides off the pad of the middle finger, the index finger tucked beside them, the last two fingers curled down.\n\nA blue military cuff with gold trim, and a pentagram transmutation circle drawn on the back of the glove. A small spark flickers between the fingertips.\n\nSpeed lines radiate outward from the hand, a dark blurred forest behind.\n\nKeep the upper part of the panel simple and empty: blurred dark background only. Pure illustration."
+      ],
+      "widgets_values_named": {
+        "value": "refcontrol. Follow the exact hand shape and finger positions from image 1. Take the costume colours and the art style from image 2.\n\nDramatic extreme close-up. A single white-gloved right hand fills the frame at the instant of a finger snap: the thumb slides off the pad of the middle finger, the index finger tucked beside them, the last two fingers curled down.\n\nA blue military cuff with gold trim, and a pentagram transmutation circle drawn on the back of the glove. A small spark flickers between the fingertips.\n\nSpeed lines radiate outward from the hand, a dark blurred forest behind.\n\nKeep the upper part of the panel simple and empty: blurred dark background only. Pure illustration."
+      }
+    },
+    {
+      "id": 23,
+      "type": "PreviewImage",
+      "pos": [
+        459.3263748204405,
+        1336.9353898188408
+      ],
+      "size": [
+        320,
+        280
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 35
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "превью кадра 3",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -959.1917415071246,
+        -775.6953850090691
+      ],
+      "size": [
+        417.50758942926575,
+        314.08813061969204
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "title": "Текст кадра 1",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Wide manga panel. Two characters face each other in a dark forest, the Hogwarts castle visible in the distance between them.\n\nOn the left: Harry Potter from image 2, a small 7-year-old boy with round glasses and a lightning scar on the forehead, in a school uniform and a dark red sweater.\n\nOn the right: Roy Mustang from image 1, a 25-year-old man with black hair, in a blue military coat with white gloves. The pentagram transmutation circle appears on the gloves only, the rest of the coat is plain.\n\nBoth keep their arms relaxed and hanging down at their sides, hands open and lowered. A tense stand-off, they hold eye contact.\n\nKeep the upper-left corner of the panel simple and empty: open sky and distant treetops only. Pure illustration."
+      ],
+      "widgets_values_named": {
+        "value": "Wide manga panel. Two characters face each other in a dark forest, the Hogwarts castle visible in the distance between them.\n\nOn the left: Harry Potter from image 2, a small 7-year-old boy with round glasses and a lightning scar on the forehead, in a school uniform and a dark red sweater.\n\nOn the right: Roy Mustang from image 1, a 25-year-old man with black hair, in a blue military coat with white gloves. The pentagram transmutation circle appears on the gloves only, the rest of the coat is plain.\n\nBoth keep their arms relaxed and hanging down at their sides, hands open and lowered. A tense stand-off, they hold eye contact.\n\nKeep the upper-left corner of the panel simple and empty: open sky and distant treetops only. Pure illustration."
+      }
+    },
+    {
+      "id": 150,
+      "type": "ImageCrop",
+      "pos": [
+        836.7054681389448,
+        -800.8697616631393
+      ],
+      "size": [
+        300,
+        150
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 224
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            226,
+            240
+          ]
+        }
+      ],
+      "title": "лицо Гарри из кадра 1 (руки отрезаны)",
+      "properties": {
+        "Node name for S&R": "ImageCrop",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        255,
+        320,
+        265,
+        195
+      ],
+      "widgets_values_named": {
+        "width": 255,
+        "height": 320,
+        "x": 265,
+        "y": 195
+      }
+    },
+    {
+      "id": 151,
+      "type": "ImageCrop",
+      "pos": [
+        836.7054681389448,
+        -600.8697616631392
+      ],
+      "size": [
+        300,
+        150
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 225
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            244
+          ]
+        }
+      ],
+      "title": "лицо Роя из кадра 1 (руки отрезаны)",
+      "properties": {
+        "Node name for S&R": "ImageCrop",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        340,
+        380,
+        810,
+        5
+      ],
+      "widgets_values_named": {
+        "width": 340,
+        "height": 380,
+        "x": 810,
+        "y": 5
+      }
+    },
+    {
+      "id": 19,
+      "type": "LoadImage",
+      "pos": [
+        -221.0205326093241,
+        849.2370054615968
+      ],
+      "size": [
+        300,
+        314
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            236
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "кадр 2: реф 2",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "7bfcdb8efe2e1e2d07b5adfd6b329945.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "7bfcdb8efe2e1e2d07b5adfd6b329945.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 22,
+      "type": "StringConcatenate",
+      "pos": [
+        -565.7081286359537,
+        1414.5833671843343
+      ],
+      "size": [
+        300,
+        166
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 28
+        },
+        {
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "title": "текст + стиль",
+      "properties": {
+        "Node name for S&R": "StringConcatenate",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "",
+        " "
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "",
+        "delimiter": " "
+      }
+    },
+    {
+      "id": 26,
+      "type": "1a7c5e90-6b2f-4a31-9d84-0c5f3b7e2a11",
+      "pos": [
+        -86.84417002432755,
+        1265.4820113002352
+      ],
+      "size": [
+        460,
+        304
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 249
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 26
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 27
+        },
+        {
+          "label": "промпт кадра",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 30
+        },
+        {
+          "label": "reference 1 (что в кадре)",
+          "name": "ref_1",
+          "type": "IMAGE",
+          "link": 271
+        },
+        {
+          "label": "reference 2 (что в кадре)",
+          "name": "ref_2",
+          "type": "IMAGE",
+          "link": 244
+        },
+        {
+          "label": "character sheet (общий)",
+          "name": "style_ref_1",
+          "type": "IMAGE",
+          "link": 245
+        },
+        {
+          "label": "style sample (общий)",
+          "name": "style_ref_2",
+          "type": "IMAGE",
+          "link": 246
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35,
+            265
+          ]
+        }
+      ],
+      "title": "КАДР 3 — крупный план кисти Роя (структура: пальцы)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "previewExposures": []
+      },
+      "widgets_values": [
+        "",
+        656,
+        1184,
+        303,
+        12
+      ],
+      "widgets_values_named": {
+        "text": "",
+        "width": 656,
+        "height": 1184,
+        "seed": 303,
+        "steps": 12
+      }
+    },
+    {
+      "id": 166,
+      "type": "5d1f8ae4-9c62-4b70-a138-6e40f2b71d99",
+      "pos": [
+        419.9309104140122,
+        1347.786042771336
+      ],
+      "size": [
+        440,
+        340
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 262
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 263
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 264
+        },
+        {
+          "label": "готовый кадр",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 265
+        },
+        {
+          "label": "что дорисовать",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        },
+        {
+          "label": "ширина кадра",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "label": "высота кадра",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        },
+        {
+          "label": "сид бабла",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "label": "шаги",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            266,
+            267
+          ]
+        }
+      ],
+      "title": "БАБЛ кадра 3 — второй проход",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "previewExposures": []
+      },
+      "widgets_values": [
+        "Add a manga speech bubble to the top of this image: a white rounded bubble with a bold black outline, its pointed tail leading up out of the top of the frame toward a speaker above. Inside the bubble, in black capital letters, exactly this line:\n\"WE SHOULD MEASURE THIS, ONCE AND FOR ALL ...\"\nThe gloved hand and the background stay exactly as they are.",
+        656,
+        1184,
+        903,
+        8
+      ],
+      "widgets_values_named": {
+        "text": "Add a manga speech bubble to the top of this image: a white rounded bubble with a bold black outline, its pointed tail leading up out of the top of the frame toward a speaker above. Inside the bubble, in black capital letters, exactly this line:\n\"WE SHOULD MEASURE THIS, ONCE AND FOR ALL ...\"\nThe gloved hand and the background stay exactly as they are.",
+        "width": 656,
+        "height": 1184,
+        "seed": 903,
+        "steps": 8
+      }
+    },
+    {
+      "id": 152,
+      "type": "PreviewImage",
+      "pos": [
+        1176.7054681389454,
+        -800.8697616631393
+      ],
+      "size": [
+        320,
+        300
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 226
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "проверка: лица без рук",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 167,
+      "type": "PreviewImage",
+      "pos": [
+        887.8239676381827,
+        1346.3900586390153
+      ],
+      "size": [
+        320,
+        300
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 267
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "кадр с баблом",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 153,
+      "type": "ImageCrop",
+      "pos": [
+        -1007.4320777653809,
+        1744.5921830821057
+      ],
+      "size": [
+        300,
+        150
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 227
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            228
+          ]
+        }
+      ],
+      "title": "срезать вотермарку Adobe Stock",
+      "properties": {
+        "Node name for S&R": "ImageCrop",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        455,
+        500,
+        45,
+        0
+      ],
+      "widgets_values_named": {
+        "width": 455,
+        "height": 500,
+        "x": 45,
+        "y": 0
+      }
+    },
+    {
+      "id": 13,
+      "type": "LoadImage",
+      "pos": [
+        -1348.454308206137,
+        1745.3938308368406
+      ],
+      "size": [
+        300,
+        314.0000000000001
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            227
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "кадр 1: реф 2",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "500_F_267426318_d0jBwcdQg4VwEaUnQfqI9LJFX4O63zFW.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "500_F_267426318_d0jBwcdQg4VwEaUnQfqI9LJFX4O63zFW.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 157,
+      "type": "LoadImage",
+      "pos": [
+        -1354.418348940783,
+        2359.126472373895
+      ],
+      "size": [
+        320,
+        320
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            269
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "атлет щёлкает пальцами",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "ChatGPT Image 16 сент. 2026 г., 19_38_04.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "ChatGPT Image 16 сент. 2026 г., 19_38_04.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 160,
+      "type": "Canny",
+      "pos": [
+        -961.441168101896,
+        2359.1264723738964
+      ],
+      "size": [
+        321.07129755422835,
+        110.53560790973188
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 269
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            234
+          ]
+        }
+      ],
+      "title": "контур фигуры -> структура кадра 2",
+      "properties": {
+        "Node name for S&R": "Canny",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        0.15,
+        0.31
+      ],
+      "widgets_values_named": {
+        "low_threshold": 0.15,
+        "high_threshold": 0.31
+      }
+    },
+    {
+      "id": 161,
+      "type": "PreviewImage",
+      "pos": [
+        -595.8992530390193,
+        2361.271827762562
+      ],
+      "size": [
+        300,
+        280
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 234
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            273
+          ]
+        }
+      ],
+      "title": "что увидит кадр 2",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 154,
+      "type": "ImageScaleToMaxDimension",
+      "pos": [
+        -1017.3248277362854,
+        1965.1527322399597
+      ],
+      "size": [
+        320,
+        100
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 228
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            229
+          ]
+        }
+      ],
+      "title": "до 1024",
+      "properties": {
+        "Node name for S&R": "ImageScaleToMaxDimension",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "area",
+        1024
+      ],
+      "widgets_values_named": {
+        "upscale_method": "area",
+        "largest_size": 1024
+      }
+    },
+    {
+      "id": 155,
+      "type": "Canny",
+      "pos": [
+        -669.504312538783,
+        1967.9567795012126
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 229
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            230,
+            271
+          ]
+        }
+      ],
+      "title": "контур кисти -> структура кадра 3",
+      "properties": {
+        "Node name for S&R": "Canny",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        0.23,
+        0.37
+      ],
+      "widgets_values_named": {
+        "low_threshold": 0.23,
+        "high_threshold": 0.37
+      }
+    },
+    {
+      "id": 16,
+      "type": "StringConcatenate",
+      "pos": [
+        -530.4591412316396,
+        591.0626573155384
+      ],
+      "size": [
+        300,
+        166
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 16
+        },
+        {
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "title": "текст + стиль",
+      "properties": {
+        "Node name for S&R": "StringConcatenate",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "",
+        "",
+        " "
+      ],
+      "widgets_values_named": {
+        "string_a": "",
+        "string_b": "",
+        "delimiter": " "
+      }
+    },
+    {
+      "id": 15,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -257.83100454379246,
+        111.4035236444934
+      ],
+      "size": [
+        452.7818666871025,
+        300.229347748028
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            16
+          ]
+        }
+      ],
+      "title": "Текст кадра 2",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "refcontrol. Follow the body pose and the hand shape from image 1. Take the character, the face and the clothing from image 2. Don't take any face lines from image 1 - only pose. Also make boy look smaller height, than image 1\n\nMedium shot from a slightly high camera angle. Harry Potter, an 8-year-old boy with round glasses and a lightning scar on his forehead. He should look like a small slighlty frightned child, use image 2 as a ref\n\nHe is looking straight into the camera at his opponent: his face is turned to the viewer, his chin lifted toward the lens, both eyes wide open and clearly visible behind the round glasses, holding direct eye contact. His head is not tilted down and his eyes are not lowered, he does not look at his own hand or at the ground.\n\nHis right arm reaches toward the camera, the hand caught mid snap: the thumb presses against the pad of the middle finger, the index finger tucked beside them, the last two fingers curled down. It is a small boy's bare hand, the fingertips drawn plainly in the same flat skin tone as the rest of the hand.\n\nHis left arm hangs down at his side, holding a magic wand, pointed down to the ground.\n\nA drop of sweat runs down his cheek, he is nervous but he keeps staring forward. A dark forest behind him.\n\nKeep the upper-right corner of the panel simple and empty: plain blurred background only. Pure illustration."
+      ],
+      "widgets_values_named": {
+        "value": "refcontrol. Follow the body pose and the hand shape from image 1. Take the character, the face and the clothing from image 2. Don't take any face lines from image 1 - only pose. Also make boy look smaller height, than image 1\n\nMedium shot from a slightly high camera angle. Harry Potter, an 8-year-old boy with round glasses and a lightning scar on his forehead. He should look like a small slighlty frightned child, use image 2 as a ref\n\nHe is looking straight into the camera at his opponent: his face is turned to the viewer, his chin lifted toward the lens, both eyes wide open and clearly visible behind the round glasses, holding direct eye contact. His head is not tilted down and his eyes are not lowered, he does not look at his own hand or at the ground.\n\nHis right arm reaches toward the camera, the hand caught mid snap: the thumb presses against the pad of the middle finger, the index finger tucked beside them, the last two fingers curled down. It is a small boy's bare hand, the fingertips drawn plainly in the same flat skin tone as the rest of the hand.\n\nHis left arm hangs down at his side, holding a magic wand, pointed down to the ground.\n\nA drop of sweat runs down his cheek, he is nervous but he keeps staring forward. A dark forest behind him.\n\nKeep the upper-right corner of the panel simple and empty: plain blurred background only. Pure illustration."
+      }
+    },
+    {
+      "id": 163,
+      "type": "PreviewImage",
+      "pos": [
+        849.278706627637,
+        -309.3465822022086
+      ],
+      "size": [
+        320,
+        300
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 255
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "кадр с баблом",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 162,
+      "type": "5d1f8ae4-9c62-4b70-a138-6e40f2b71d99",
+      "pos": [
+        376.80266095093197,
+        -104.40693662329096
+      ],
+      "size": [
+        440,
+        340
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 250
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 251
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 252
+        },
+        {
+          "label": "готовый кадр",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 253
+        },
+        {
+          "label": "что дорисовать",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        },
+        {
+          "label": "ширина кадра",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "label": "высота кадра",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        },
+        {
+          "label": "сид бабла",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "label": "шаги",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            254,
+            255
+          ]
+        }
+      ],
+      "title": "БАБЛ кадра 1 — второй проход",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "previewExposures": []
+      },
+      "widgets_values": [
+        "Add a manga speech bubble to the upper-left area of this image: a white rounded bubble with a bold black outline, its pointed tail aimed down at the boy in the red sweater on the left. Inside the bubble, in bold black capital letters, exactly this line:\n\"WE BOTH KNOW - THIS IS FOR THE SCIENCE!\"\nEverything else in the picture stays exactly as it is.",
+        1344,
+        720,
+        901,
+        8
+      ],
+      "widgets_values_named": {
+        "text": "Add a manga speech bubble to the upper-left area of this image: a white rounded bubble with a bold black outline, its pointed tail aimed down at the boy in the red sweater on the left. Inside the bubble, in bold black capital letters, exactly this line:\n\"WE BOTH KNOW - THIS IS FOR THE SCIENCE!\"\nEverything else in the picture stays exactly as it is.",
+        "width": 1344,
+        "height": 720,
+        "seed": 901,
+        "steps": 8
+      }
+    },
+    {
+      "id": 5,
+      "type": "LoadImage",
+      "pos": [
+        -1503.6993198607076,
+        396.2836434945168
+      ],
+      "size": [
+        400,
+        340
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            237,
+            241,
+            245
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "ОБЩИЙ: лист персонажа",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "7bfcdb8efe2e1e2d07b5adfd6b329945.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "7bfcdb8efe2e1e2d07b5adfd6b329945.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 6,
+      "type": "LoadImage",
+      "pos": [
+        -1498.4986742338406,
+        791.821498827767
+      ],
+      "size": [
+        400,
+        340
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            238,
+            242,
+            246
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "ОБЩИЙ: образец стиля",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "aabbfb541a983fdc154874b842e67e1a.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "aabbfb541a983fdc154874b842e67e1a.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 164,
+      "type": "5d1f8ae4-9c62-4b70-a138-6e40f2b71d99",
+      "pos": [
+        336.44204397934743,
+        288.72140052355843
+      ],
+      "size": [
+        440,
+        340
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 256
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 257
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 258
+        },
+        {
+          "label": "готовый кадр",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 259
+        },
+        {
+          "label": "что дорисовать",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        },
+        {
+          "label": "ширина кадра",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "label": "высота кадра",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        },
+        {
+          "label": "сид бабла",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "label": "шаги",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            260,
+            261
+          ]
+        }
+      ],
+      "title": "БАБЛ кадра 2 — второй проход (из-за кадра)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "previewExposures": []
+      },
+      "widgets_values": [
+        "THE BUBBLE TAIL SHOT POINT RIGHT SIDE\n\nAdd a manga speech bubble that intrudes into this image from the right edge: a white rounded bubble with a bold black outline, only partly visible because the right border of the picture cuts it off, and its pointed tail leads off the right edge toward a speaker standing outside the frame (he is not visible at all). \n\n\nInside the bubble, in bold black capital letters, exactly this line:\n\"... WHOSE FINGER SNAP IS MOST EPIC!!!\"\nThe boy and the background stay exactly as they are.",
+        656,
+        1184,
+        902,
+        8
+      ],
+      "widgets_values_named": {
+        "text": "THE BUBBLE TAIL SHOT POINT RIGHT SIDE\n\nAdd a manga speech bubble that intrudes into this image from the right edge: a white rounded bubble with a bold black outline, only partly visible because the right border of the picture cuts it off, and its pointed tail leads off the right edge toward a speaker standing outside the frame (he is not visible at all). \n\n\nInside the bubble, in bold black capital letters, exactly this line:\n\"... WHOSE FINGER SNAP IS MOST EPIC!!!\"\nThe boy and the background stay exactly as they are.",
+        "width": 656,
+        "height": 1184,
+        "seed": 902,
+        "steps": 8
+      }
+    },
+    {
+      "id": 17,
+      "type": "PreviewImage",
+      "pos": [
+        391.5906954845874,
+        702.3018948227871
+      ],
+      "size": [
+        320,
+        280
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 23
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "превью кадра 2",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 165,
+      "type": "PreviewImage",
+      "pos": [
+        840.8038622598905,
+        416.3193082736496
+      ],
+      "size": [
+        320,
+        300
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 261
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "кадр с баблом",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 14,
+      "type": "1a7c5e90-6b2f-4a31-9d84-0c5f3b7e2a11",
+      "pos": [
+        -161.39593088097098,
+        -337.690719551061
+      ],
+      "size": [
+        460,
+        304
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 247
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 3
+        },
+        {
+          "label": "промпт кадра",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 6
+        },
+        {
+          "label": "reference 1 (что в кадре)",
+          "name": "ref_1",
+          "type": "IMAGE",
+          "link": 235
+        },
+        {
+          "label": "reference 2 (что в кадре)",
+          "name": "ref_2",
+          "type": "IMAGE",
+          "link": 236
+        },
+        {
+          "label": "character sheet (общий)",
+          "name": "style_ref_1",
+          "type": "IMAGE",
+          "link": 237
+        },
+        {
+          "label": "style sample (общий)",
+          "name": "style_ref_2",
+          "type": "IMAGE",
+          "link": 238
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11,
+            224,
+            225,
+            253
+          ]
+        }
+      ],
+      "title": "КАДР 1 — противостояние (руки опущены)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "previewExposures": []
+      },
+      "widgets_values": [
+        "",
+        1344,
+        720,
+        101,
+        6
+      ],
+      "widgets_values_named": {
+        "text": "",
+        "width": 1344,
+        "height": 720,
+        "seed": 101,
+        "steps": 6
+      }
+    },
+    {
+      "id": 11,
+      "type": "PreviewImage",
+      "pos": [
+        407.58751718898395,
+        -728.9246078823375
+      ],
+      "size": [
+        320,
+        280
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "превью кадра 1",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 20,
+      "type": "1a7c5e90-6b2f-4a31-9d84-0c5f3b7e2a11",
+      "pos": [
+        -160,
+        487.9191017225992
+      ],
+      "size": [
+        460,
+        304
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 248
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 14
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        },
+        {
+          "label": "промпт кадра",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 18
+        },
+        {
+          "label": "reference 1 (что в кадре)",
+          "name": "ref_1",
+          "type": "IMAGE",
+          "link": 273
+        },
+        {
+          "label": "reference 2 (что в кадре)",
+          "name": "ref_2",
+          "type": "IMAGE",
+          "link": 240
+        },
+        {
+          "label": "character sheet (общий)",
+          "name": "style_ref_1",
+          "type": "IMAGE",
+          "link": 241
+        },
+        {
+          "label": "style sample (общий)",
+          "name": "style_ref_2",
+          "type": "IMAGE",
+          "link": 242
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            23,
+            259
+          ]
+        }
+      ],
+      "title": "КАДР 2 — Гарри щёлкает (структура: фигура)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "previewExposures": []
+      },
+      "widgets_values": [
+        "",
+        656,
+        1184,
+        202,
+        12
+      ],
+      "widgets_values_named": {
+        "text": "",
+        "width": 656,
+        "height": 1184,
+        "seed": 202,
+        "steps": 12
+      }
+    },
+    {
+      "id": 156,
+      "type": "PreviewImage",
+      "pos": [
+        -318.3093850533752,
+        1764.532928530988
+      ],
+      "size": [
+        300,
+        280
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 230
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "что увидит кадр 3",
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 7,
+      "type": "2b8d6fa1-7c30-4b42-8e95-1d60c4f83b22",
+      "pos": [
+        994.5728068681084,
+        164.52509836162292
+      ],
+      "size": [
+        420,
+        120
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "panel_1",
+          "type": "IMAGE",
+          "link": 254
+        },
+        {
+          "name": "panel_2",
+          "type": "IMAGE",
+          "link": 260
+        },
+        {
+          "name": "panel_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 266
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            37
+          ]
+        }
+      ],
+      "title": "СТРАНИЦА — собирает 3 кадра",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "previewExposures": []
+      }
+    },
+    {
+      "id": 8,
+      "type": "SaveImage",
+      "pos": [
+        1543.1776878891187,
+        165.6833301424012
+      ],
+      "size": [
+        500,
+        560
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 37
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "Готовая страница 1440x2032",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        },
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "manga/page_v2"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "manga/page_v2"
+      }
+    }
+  ],
+  "links": [
+    [
+      2,
+      2,
+      0,
+      14,
+      1,
+      "CLIP"
+    ],
+    [
+      3,
+      3,
+      0,
+      14,
+      2,
+      "VAE"
+    ],
+    [
+      4,
+      9,
+      0,
+      10,
+      0,
+      "STRING"
+    ],
+    [
+      5,
+      4,
+      0,
+      10,
+      1,
+      "STRING"
+    ],
+    [
+      6,
+      10,
+      0,
+      14,
+      3,
+      "STRING"
+    ],
+    [
+      11,
+      14,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      14,
+      2,
+      0,
+      20,
+      1,
+      "CLIP"
+    ],
+    [
+      15,
+      3,
+      0,
+      20,
+      2,
+      "VAE"
+    ],
+    [
+      16,
+      15,
+      0,
+      16,
+      0,
+      "STRING"
+    ],
+    [
+      17,
+      4,
+      0,
+      16,
+      1,
+      "STRING"
+    ],
+    [
+      18,
+      16,
+      0,
+      20,
+      3,
+      "STRING"
+    ],
+    [
+      23,
+      20,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      26,
+      2,
+      0,
+      26,
+      1,
+      "CLIP"
+    ],
+    [
+      27,
+      3,
+      0,
+      26,
+      2,
+      "VAE"
+    ],
+    [
+      28,
+      21,
+      0,
+      22,
+      0,
+      "STRING"
+    ],
+    [
+      29,
+      4,
+      0,
+      22,
+      1,
+      "STRING"
+    ],
+    [
+      30,
+      22,
+      0,
+      26,
+      3,
+      "STRING"
+    ],
+    [
+      35,
+      26,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      37,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      200,
+      1,
+      0,
+      139,
+      0,
+      "MODEL"
+    ],
+    [
+      224,
+      14,
+      0,
+      150,
+      0,
+      "IMAGE"
+    ],
+    [
+      225,
+      14,
+      0,
+      151,
+      0,
+      "IMAGE"
+    ],
+    [
+      226,
+      150,
+      0,
+      152,
+      0,
+      "IMAGE"
+    ],
+    [
+      227,
+      13,
+      0,
+      153,
+      0,
+      "IMAGE"
+    ],
+    [
+      228,
+      153,
+      0,
+      154,
+      0,
+      "IMAGE"
+    ],
+    [
+      229,
+      154,
+      0,
+      155,
+      0,
+      "IMAGE"
+    ],
+    [
+      230,
+      155,
+      0,
+      156,
+      0,
+      "IMAGE"
+    ],
+    [
+      234,
+      160,
+      0,
+      161,
+      0,
+      "IMAGE"
+    ],
+    [
+      235,
+      12,
+      0,
+      14,
+      4,
+      "IMAGE"
+    ],
+    [
+      236,
+      19,
+      0,
+      14,
+      5,
+      "IMAGE"
+    ],
+    [
+      237,
+      5,
+      0,
+      14,
+      6,
+      "IMAGE"
+    ],
+    [
+      238,
+      6,
+      0,
+      14,
+      7,
+      "IMAGE"
+    ],
+    [
+      240,
+      150,
+      0,
+      20,
+      5,
+      "IMAGE"
+    ],
+    [
+      241,
+      5,
+      0,
+      20,
+      6,
+      "IMAGE"
+    ],
+    [
+      242,
+      6,
+      0,
+      20,
+      7,
+      "IMAGE"
+    ],
+    [
+      244,
+      151,
+      0,
+      26,
+      5,
+      "IMAGE"
+    ],
+    [
+      245,
+      5,
+      0,
+      26,
+      6,
+      "IMAGE"
+    ],
+    [
+      246,
+      6,
+      0,
+      26,
+      7,
+      "IMAGE"
+    ],
+    [
+      247,
+      1,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      248,
+      139,
+      0,
+      20,
+      0,
+      "MODEL"
+    ],
+    [
+      249,
+      139,
+      0,
+      26,
+      0,
+      "MODEL"
+    ],
+    [
+      250,
+      1,
+      0,
+      162,
+      0,
+      "MODEL"
+    ],
+    [
+      251,
+      2,
+      0,
+      162,
+      1,
+      "CLIP"
+    ],
+    [
+      252,
+      3,
+      0,
+      162,
+      2,
+      "VAE"
+    ],
+    [
+      253,
+      14,
+      0,
+      162,
+      3,
+      "IMAGE"
+    ],
+    [
+      254,
+      162,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      255,
+      162,
+      0,
+      163,
+      0,
+      "IMAGE"
+    ],
+    [
+      256,
+      1,
+      0,
+      164,
+      0,
+      "MODEL"
+    ],
+    [
+      257,
+      2,
+      0,
+      164,
+      1,
+      "CLIP"
+    ],
+    [
+      258,
+      3,
+      0,
+      164,
+      2,
+      "VAE"
+    ],
+    [
+      259,
+      20,
+      0,
+      164,
+      3,
+      "IMAGE"
+    ],
+    [
+      260,
+      164,
+      0,
+      7,
+      1,
+      "IMAGE"
+    ],
+    [
+      261,
+      164,
+      0,
+      165,
+      0,
+      "IMAGE"
+    ],
+    [
+      262,
+      1,
+      0,
+      166,
+      0,
+      "MODEL"
+    ],
+    [
+      263,
+      2,
+      0,
+      166,
+      1,
+      "CLIP"
+    ],
+    [
+      264,
+      3,
+      0,
+      166,
+      2,
+      "VAE"
+    ],
+    [
+      265,
+      26,
+      0,
+      166,
+      3,
+      "IMAGE"
+    ],
+    [
+      266,
+      166,
+      0,
+      7,
+      2,
+      "IMAGE"
+    ],
+    [
+      267,
+      166,
+      0,
+      167,
+      0,
+      "IMAGE"
+    ],
+    [
+      269,
+      157,
+      0,
+      160,
+      0,
+      "IMAGE"
+    ],
+    [
+      271,
+      155,
+      0,
+      26,
+      4,
+      "IMAGE"
+    ],
+    [
+      273,
+      161,
+      0,
+      20,
+      4,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Модель и общие настройки",
+      "bounding": [
+        -1540,
+        -380,
+        484.1441219017677,
+        687.490288525137
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Общие референсы на всю страницу",
+      "bounding": [
+        -1537.6319109843294,
+        323.3461440395985,
+        485.2006456268666,
+        844.8799403060311
+      ],
+      "color": "#88A",
+      "flags": {}
+    },
+    {
+      "id": 90,
+      "title": "Карты структуры жеста (фото -> Canny)",
+      "bounding": [
+        -1393.0224180598123,
+        1651.5862241865539,
+        1393.761007147344,
+        1081.7850190838208
+      ],
+      "color": "#8A8",
+      "flags": {}
+    },
+    {
+      "id": 91,
+      "title": "Лица из кадра 1 — без рук, чтобы палец не переносился",
+      "bounding": [
+        796.7054681389444,
+        -880.8697616631385,
+        756.7513835770499,
+        450.25431048519874
+      ],
+      "color": "#A88",
+      "flags": {}
+    },
+    {
+      "id": 93,
+      "title": "Второй проход: модель дорисовывает баблы на готовых кадрах",
+      "bounding": [
+        354.5545003078191,
+        -399.766296926494,
+        1747.4324105135831,
+        2168.850224099088
+      ],
+      "color": "#A8A",
+      "flags": {}
+    }
+  ],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709",
+        "version": 1,
+        "state": {
+          "lastGroupId": 93,
+          "lastNodeId": 179,
+          "lastLinkId": 275,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Reference Conditioning",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -270,
+            990,
+            120,
+            120
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            580,
+            970,
+            120,
+            80
+          ]
+        },
+        "inputs": [
+          {
+            "id": "5c9a0f5e-8cee-4947-90bc-330de782043a",
+            "name": "conditioning",
+            "type": "CONDITIONING",
+            "linkIds": [
+              165
+            ],
+            "label": "positive",
+            "pos": [
+              -170,
+              1010
+            ]
+          },
+          {
+            "id": "61826d46-4c21-4ad6-801c-3e3fa94115e2",
+            "name": "conditioning_1",
+            "type": "CONDITIONING",
+            "linkIds": [
+              166
+            ],
+            "label": "negative",
+            "pos": [
+              -170,
+              1030
+            ]
+          },
+          {
+            "id": "345bf085-5939-47ff-9767-8f8f239a719c",
+            "name": "pixels",
+            "type": "IMAGE",
+            "linkIds": [
+              167
+            ],
+            "pos": [
+              -170,
+              1050
+            ]
+          },
+          {
+            "id": "f4594e34-e2f5-4f1e-b1fa-a1dc2aeb0a90",
+            "name": "vae",
+            "type": "VAE",
+            "linkIds": [
+              168
+            ],
+            "pos": [
+              -170,
+              1070
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "b3357c0e-6428-4055-9cd3-3595f0896fa8",
+            "name": "CONDITIONING",
+            "type": "CONDITIONING",
+            "linkIds": [
+              169
+            ],
+            "label": "positive",
+            "pos": [
+              600,
+              990
+            ]
+          },
+          {
+            "id": "01519713-2ed1-4694-a387-79f44e088e89",
+            "name": "CONDITIONING_1",
+            "type": "CONDITIONING",
+            "linkIds": [
+              170
+            ],
+            "label": "negative",
+            "pos": [
+              600,
+              1010
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 115,
+            "type": "ReferenceLatent",
+            "pos": [
+              170,
+              1050
+            ],
+            "size": [
+              289.142578125,
+              50
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 0,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "кондиционирование",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 166
+              },
+              {
+                "localized_name": "латент",
+                "name": "latent",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 163
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "КОНДИЦИОНИРОВАНИЕ",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  170
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "ReferenceLatent",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 116,
+            "type": "VAEEncode",
+            "pos": [
+              -90,
+              1150
+            ],
+            "size": [
+              190,
+              50
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "пиксели",
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 167
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 168
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ЛАТЕНТНЫЙ",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  163,
+                  164
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "VAEEncode",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 117,
+            "type": "ReferenceLatent",
+            "pos": [
+              170,
+              940
+            ],
+            "size": [
+              289.142578125,
+              50
+            ],
+            "flags": {
+              "collapsed": false
+            },
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "кондиционирование",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 165
+              },
+              {
+                "localized_name": "латент",
+                "name": "latent",
+                "shape": 7,
+                "type": "LATENT",
+                "link": 164
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "КОНДИЦИОНИРОВАНИЕ",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  169
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "ReferenceLatent",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 163,
+            "origin_id": 116,
+            "origin_slot": 0,
+            "target_id": 115,
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 164,
+            "origin_id": 116,
+            "origin_slot": 0,
+            "target_id": 117,
+            "target_slot": 1,
+            "type": "LATENT"
+          },
+          {
+            "id": 165,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 117,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 166,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 115,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 167,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 116,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 168,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 116,
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 169,
+            "origin_id": 117,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 170,
+            "origin_id": 115,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      },
+      {
+        "id": "1a7c5e90-6b2f-4a31-9d84-0c5f3b7e2a11",
+        "version": 1,
+        "state": {
+          "lastGroupId": 93,
+          "lastNodeId": 179,
+          "lastLinkId": 275,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "КАДР 2 — Гарри щёлкает (структура: фигура)",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -860,
+            -140,
+            183.421875,
+            288
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1520,
+            40,
+            128,
+            68
+          ]
+        },
+        "inputs": [
+          {
+            "id": "a676ddde-43bd-5e17-9bc7-058114215b2d",
+            "name": "model",
+            "type": "MODEL",
+            "linkIds": [
+              29
+            ],
+            "pos": [
+              -700.578125,
+              -116
+            ]
+          },
+          {
+            "id": "ece03344-b552-5e58-ac59-c37dd1e7517c",
+            "name": "clip",
+            "type": "CLIP",
+            "linkIds": [
+              1
+            ],
+            "pos": [
+              -700.578125,
+              -96
+            ]
+          },
+          {
+            "id": "c130ded6-6c1e-5e96-8b94-03a5a270f304",
+            "name": "vae",
+            "type": "VAE",
+            "linkIds": [
+              6,
+              11,
+              16,
+              21,
+              38
+            ],
+            "pos": [
+              -700.578125,
+              -76
+            ]
+          },
+          {
+            "id": "1a6e0364-7388-5a02-b1d8-d8774d1a6607",
+            "name": "text",
+            "type": "STRING",
+            "linkIds": [
+              2
+            ],
+            "label": "промпт кадра",
+            "pos": [
+              -700.578125,
+              -56
+            ]
+          },
+          {
+            "id": "c5c3b77e-2387-515f-8918-f5730175b694",
+            "name": "width",
+            "type": "INT",
+            "linkIds": [
+              24,
+              26
+            ],
+            "pos": [
+              -700.578125,
+              -36
+            ]
+          },
+          {
+            "id": "6ca9b591-39fb-54c0-8c85-2c6827150455",
+            "name": "height",
+            "type": "INT",
+            "linkIds": [
+              25,
+              27
+            ],
+            "pos": [
+              -700.578125,
+              -16
+            ]
+          },
+          {
+            "id": "7b3a585a-f685-5e7e-b483-0c99440ccb00",
+            "name": "seed",
+            "type": "INT",
+            "linkIds": [
+              28
+            ],
+            "pos": [
+              -700.578125,
+              4
+            ]
+          },
+          {
+            "id": "3707dede-3c90-59b2-9b55-d6752d6841de",
+            "name": "ref_1",
+            "type": "IMAGE",
+            "linkIds": [
+              4
+            ],
+            "label": "reference 1 (что в кадре)",
+            "pos": [
+              -700.578125,
+              24
+            ]
+          },
+          {
+            "id": "b2c6d8e2-b608-54b5-98a8-1b9fabace565",
+            "name": "ref_2",
+            "type": "IMAGE",
+            "linkIds": [
+              9
+            ],
+            "label": "reference 2 (что в кадре)",
+            "pos": [
+              -700.578125,
+              44
+            ]
+          },
+          {
+            "id": "19fa13cf-88a4-55be-b175-3be66d51bcf2",
+            "name": "style_ref_1",
+            "type": "IMAGE",
+            "linkIds": [
+              14
+            ],
+            "label": "character sheet (общий)",
+            "pos": [
+              -700.578125,
+              64
+            ]
+          },
+          {
+            "id": "d531d2d4-4c0b-5008-aa5c-4125c9240391",
+            "name": "style_ref_2",
+            "type": "IMAGE",
+            "linkIds": [
+              19
+            ],
+            "label": "style sample (общий)",
+            "pos": [
+              -700.578125,
+              84
+            ]
+          },
+          {
+            "id": "3bc694fd-cdb2-58af-8477-2f982b6f8db5",
+            "name": "steps",
+            "type": "INT",
+            "linkIds": [
+              224
+            ],
+            "pos": [
+              -700.578125,
+              104
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "f20c5e46-8cf3-538a-8a27-727395db3ffa",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              39
+            ],
+            "pos": [
+              1544,
+              64
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 118,
+            "type": "CLIPTextEncode",
+            "pos": [
+              -520,
+              -140
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 1
+              },
+              {
+                "localized_name": "текст",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 2
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "КОНДИЦИОНИРОВАНИЕ",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  3,
+                  7
+                ]
+              }
+            ],
+            "title": "Промпт кадра",
+            "properties": {
+              "Node name for S&R": "CLIPTextEncode",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              ""
+            ],
+            "widgets_values_named": {
+              "text": ""
+            }
+          },
+          {
+            "id": 119,
+            "type": "ConditioningZeroOut",
+            "pos": [
+              -520,
+              110
+            ],
+            "size": [
+              250,
+              30
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "условие",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 3
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "КОНДИЦИОНИРОВАНИЕ",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  8
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "ConditioningZeroOut",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 120,
+            "type": "ImageScaleToTotalPixels",
+            "pos": [
+              -520,
+              220
+            ],
+            "size": [
+              300,
+              106
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "изображение",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 4
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  5
+                ]
+              }
+            ],
+            "title": "ref 1 -> 1 MP",
+            "properties": {
+              "Node name for S&R": "ImageScaleToTotalPixels",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "nearest-exact",
+              1,
+              1
+            ],
+            "widgets_values_named": {
+              "upscale_method": "nearest-exact",
+              "megapixels": 1,
+              "resolution_steps": 1
+            }
+          },
+          {
+            "id": 121,
+            "type": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709",
+            "pos": [
+              -160,
+              220
+            ],
+            "size": [
+              280,
+              100
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "positive",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 7
+              },
+              {
+                "label": "negative",
+                "name": "conditioning_1",
+                "type": "CONDITIONING",
+                "link": 8
+              },
+              {
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 5
+              },
+              {
+                "name": "vae",
+                "type": "VAE",
+                "link": 6
+              }
+            ],
+            "outputs": [
+              {
+                "label": "positive",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  12
+                ]
+              },
+              {
+                "label": "negative",
+                "name": "CONDITIONING_1",
+                "type": "CONDITIONING",
+                "links": [
+                  13
+                ]
+              }
+            ],
+            "title": "Reference 1",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              },
+              "previewExposures": []
+            }
+          },
+          {
+            "id": 122,
+            "type": "ImageScaleToTotalPixels",
+            "pos": [
+              -520,
+              370
+            ],
+            "size": [
+              300,
+              106
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "изображение",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 9
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  10
+                ]
+              }
+            ],
+            "title": "ref 2 -> 1 MP",
+            "properties": {
+              "Node name for S&R": "ImageScaleToTotalPixels",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "nearest-exact",
+              1,
+              1
+            ],
+            "widgets_values_named": {
+              "upscale_method": "nearest-exact",
+              "megapixels": 1,
+              "resolution_steps": 1
+            }
+          },
+          {
+            "id": 123,
+            "type": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709",
+            "pos": [
+              -160,
+              370
+            ],
+            "size": [
+              280,
+              100
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "positive",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 12
+              },
+              {
+                "label": "negative",
+                "name": "conditioning_1",
+                "type": "CONDITIONING",
+                "link": 13
+              },
+              {
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 10
+              },
+              {
+                "name": "vae",
+                "type": "VAE",
+                "link": 11
+              }
+            ],
+            "outputs": [
+              {
+                "label": "positive",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  17
+                ]
+              },
+              {
+                "label": "negative",
+                "name": "CONDITIONING_1",
+                "type": "CONDITIONING",
+                "links": [
+                  18
+                ]
+              }
+            ],
+            "title": "Reference 2",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              },
+              "previewExposures": []
+            }
+          },
+          {
+            "id": 124,
+            "type": "ImageScaleToTotalPixels",
+            "pos": [
+              -520,
+              520
+            ],
+            "size": [
+              300,
+              106
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "изображение",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 14
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  15
+                ]
+              }
+            ],
+            "title": "ref 3 -> 1 MP",
+            "properties": {
+              "Node name for S&R": "ImageScaleToTotalPixels",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "nearest-exact",
+              1,
+              1
+            ],
+            "widgets_values_named": {
+              "upscale_method": "nearest-exact",
+              "megapixels": 1,
+              "resolution_steps": 1
+            }
+          },
+          {
+            "id": 125,
+            "type": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709",
+            "pos": [
+              -160,
+              520
+            ],
+            "size": [
+              280,
+              100
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "positive",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 17
+              },
+              {
+                "label": "negative",
+                "name": "conditioning_1",
+                "type": "CONDITIONING",
+                "link": 18
+              },
+              {
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 15
+              },
+              {
+                "name": "vae",
+                "type": "VAE",
+                "link": 16
+              }
+            ],
+            "outputs": [
+              {
+                "label": "positive",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  22
+                ]
+              },
+              {
+                "label": "negative",
+                "name": "CONDITIONING_1",
+                "type": "CONDITIONING",
+                "links": [
+                  23
+                ]
+              }
+            ],
+            "title": "Reference 3",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              },
+              "previewExposures": []
+            }
+          },
+          {
+            "id": 126,
+            "type": "ImageScaleToTotalPixels",
+            "pos": [
+              -520,
+              670
+            ],
+            "size": [
+              300,
+              106
+            ],
+            "flags": {},
+            "order": 9,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "изображение",
+                "name": "image",
+                "type": "IMAGE",
+                "link": 19
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  20
+                ]
+              }
+            ],
+            "title": "ref 4 -> 1 MP",
+            "properties": {
+              "Node name for S&R": "ImageScaleToTotalPixels",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "nearest-exact",
+              1,
+              1
+            ],
+            "widgets_values_named": {
+              "upscale_method": "nearest-exact",
+              "megapixels": 1,
+              "resolution_steps": 1
+            }
+          },
+          {
+            "id": 127,
+            "type": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709",
+            "pos": [
+              -160,
+              670
+            ],
+            "size": [
+              280,
+              100
+            ],
+            "flags": {},
+            "order": 10,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "positive",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 22
+              },
+              {
+                "label": "negative",
+                "name": "conditioning_1",
+                "type": "CONDITIONING",
+                "link": 23
+              },
+              {
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 20
+              },
+              {
+                "name": "vae",
+                "type": "VAE",
+                "link": 21
+              }
+            ],
+            "outputs": [
+              {
+                "label": "positive",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  30
+                ]
+              },
+              {
+                "label": "negative",
+                "name": "CONDITIONING_1",
+                "type": "CONDITIONING",
+                "links": [
+                  31
+                ]
+              }
+            ],
+            "title": "Reference 4",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              },
+              "previewExposures": []
+            }
+          },
+          {
+            "id": 130,
+            "type": "KSamplerSelect",
+            "pos": [
+              240,
+              60
+            ],
+            "size": [
+              280,
+              60
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "СЭМПЛЕР",
+                "name": "SAMPLER",
+                "type": "SAMPLER",
+                "links": [
+                  34
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "KSamplerSelect",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "euler"
+            ],
+            "widgets_values_named": {
+              "sampler_name": "euler"
+            }
+          },
+          {
+            "id": 132,
+            "type": "CFGGuider",
+            "pos": [
+              580,
+              60
+            ],
+            "size": [
+              280,
+              100
+            ],
+            "flags": {},
+            "order": 14,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "модель",
+                "name": "model",
+                "type": "MODEL",
+                "link": 29
+              },
+              {
+                "localized_name": "положительный",
+                "name": "positive",
+                "type": "CONDITIONING",
+                "link": 30
+              },
+              {
+                "localized_name": "отрицательный",
+                "name": "negative",
+                "type": "CONDITIONING",
+                "link": 31
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ГИД",
+                "name": "GUIDER",
+                "type": "GUIDER",
+                "links": [
+                  33
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "CFGGuider",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              1
+            ],
+            "widgets_values_named": {
+              "cfg": 1
+            }
+          },
+          {
+            "id": 134,
+            "type": "VAEDecode",
+            "pos": [
+              1220,
+              60
+            ],
+            "size": [
+              250,
+              50
+            ],
+            "flags": {},
+            "order": 16,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "образцы",
+                "name": "samples",
+                "type": "LATENT",
+                "link": 37
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 38
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  39
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "VAEDecode",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 133,
+            "type": "SamplerCustomAdvanced",
+            "pos": [
+              900,
+              60
+            ],
+            "size": [
+              299.11875,
+              326
+            ],
+            "flags": {},
+            "order": 15,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "шум",
+                "name": "noise",
+                "type": "NOISE",
+                "link": 32
+              },
+              {
+                "localized_name": "гид",
+                "name": "guider",
+                "type": "GUIDER",
+                "link": 33
+              },
+              {
+                "localized_name": "сэмплер",
+                "name": "sampler",
+                "type": "SAMPLER",
+                "link": 34
+              },
+              {
+                "localized_name": "сигмы",
+                "name": "sigmas",
+                "type": "SIGMAS",
+                "link": 35
+              },
+              {
+                "localized_name": "латентное_изображение",
+                "name": "latent_image",
+                "type": "LATENT",
+                "link": 36
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "выход",
+                "name": "output",
+                "type": "LATENT",
+                "links": [
+                  37
+                ]
+              },
+              {
+                "localized_name": "выход без шума",
+                "name": "denoised_output",
+                "type": "LATENT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "SamplerCustomAdvanced",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [],
+            "widgets_values_named": {}
+          },
+          {
+            "id": 128,
+            "type": "EmptyFlux2LatentImage",
+            "pos": [
+              248.1401790902634,
+              -256.0767011153797
+            ],
+            "size": [
+              280,
+              106
+            ],
+            "flags": {},
+            "order": 11,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "ширина",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 24
+              },
+              {
+                "localized_name": "высота",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 25
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ЛАТЕНТНЫЙ",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  36
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "EmptyFlux2LatentImage",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              1344,
+              720,
+              1
+            ],
+            "widgets_values_named": {
+              "width": 1344,
+              "height": 720,
+              "batch_size": 1
+            }
+          },
+          {
+            "id": 129,
+            "type": "Flux2Scheduler",
+            "pos": [
+              240,
+              -98.99375696103434
+            ],
+            "size": [
+              280,
+              106
+            ],
+            "flags": {},
+            "order": 12,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "steps",
+                "name": "steps",
+                "type": "INT",
+                "widget": {
+                  "name": "steps"
+                },
+                "link": 224
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 26
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 27
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "СИГМЫ",
+                "name": "SIGMAS",
+                "type": "SIGMAS",
+                "links": [
+                  35
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "Flux2Scheduler",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              6,
+              1344,
+              720
+            ],
+            "widgets_values_named": {
+              "steps": 6,
+              "width": 1344,
+              "height": 720
+            }
+          },
+          {
+            "id": 131,
+            "type": "RandomNoise",
+            "pos": [
+              233.66875343007493,
+              191.65619834710733
+            ],
+            "size": [
+              280,
+              82
+            ],
+            "flags": {},
+            "order": 13,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "сид_шума",
+                "name": "noise_seed",
+                "type": "INT",
+                "widget": {
+                  "name": "noise_seed"
+                },
+                "link": 28
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ШУМ",
+                "name": "NOISE",
+                "type": "NOISE",
+                "links": [
+                  32
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "RandomNoise",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              0,
+              "fixed"
+            ],
+            "widgets_values_named": {
+              "noise_seed": 0,
+              "control_after_generate": "fixed"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 118,
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 2,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 118,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 3,
+            "origin_id": 118,
+            "origin_slot": 0,
+            "target_id": 119,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 4,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 120,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 5,
+            "origin_id": 120,
+            "origin_slot": 0,
+            "target_id": 121,
+            "target_slot": 2,
+            "type": "IMAGE"
+          },
+          {
+            "id": 6,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 121,
+            "target_slot": 3,
+            "type": "VAE"
+          },
+          {
+            "id": 7,
+            "origin_id": 118,
+            "origin_slot": 0,
+            "target_id": 121,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 8,
+            "origin_id": 119,
+            "origin_slot": 0,
+            "target_id": 121,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 9,
+            "origin_id": -10,
+            "origin_slot": 8,
+            "target_id": 122,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 10,
+            "origin_id": 122,
+            "origin_slot": 0,
+            "target_id": 123,
+            "target_slot": 2,
+            "type": "IMAGE"
+          },
+          {
+            "id": 11,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 123,
+            "target_slot": 3,
+            "type": "VAE"
+          },
+          {
+            "id": 12,
+            "origin_id": 121,
+            "origin_slot": 0,
+            "target_id": 123,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 13,
+            "origin_id": 121,
+            "origin_slot": 1,
+            "target_id": 123,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 14,
+            "origin_id": -10,
+            "origin_slot": 9,
+            "target_id": 124,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 15,
+            "origin_id": 124,
+            "origin_slot": 0,
+            "target_id": 125,
+            "target_slot": 2,
+            "type": "IMAGE"
+          },
+          {
+            "id": 16,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 125,
+            "target_slot": 3,
+            "type": "VAE"
+          },
+          {
+            "id": 17,
+            "origin_id": 123,
+            "origin_slot": 0,
+            "target_id": 125,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 18,
+            "origin_id": 123,
+            "origin_slot": 1,
+            "target_id": 125,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 19,
+            "origin_id": -10,
+            "origin_slot": 10,
+            "target_id": 126,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 20,
+            "origin_id": 126,
+            "origin_slot": 0,
+            "target_id": 127,
+            "target_slot": 2,
+            "type": "IMAGE"
+          },
+          {
+            "id": 21,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 127,
+            "target_slot": 3,
+            "type": "VAE"
+          },
+          {
+            "id": 22,
+            "origin_id": 125,
+            "origin_slot": 0,
+            "target_id": 127,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 23,
+            "origin_id": 125,
+            "origin_slot": 1,
+            "target_id": 127,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 24,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 128,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 25,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 128,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 26,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 129,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 27,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 129,
+            "target_slot": 2,
+            "type": "INT"
+          },
+          {
+            "id": 28,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 131,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 29,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 132,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 30,
+            "origin_id": 127,
+            "origin_slot": 0,
+            "target_id": 132,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 31,
+            "origin_id": 127,
+            "origin_slot": 1,
+            "target_id": 132,
+            "target_slot": 2,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 32,
+            "origin_id": 131,
+            "origin_slot": 0,
+            "target_id": 133,
+            "target_slot": 0,
+            "type": "NOISE"
+          },
+          {
+            "id": 33,
+            "origin_id": 132,
+            "origin_slot": 0,
+            "target_id": 133,
+            "target_slot": 1,
+            "type": "GUIDER"
+          },
+          {
+            "id": 34,
+            "origin_id": 130,
+            "origin_slot": 0,
+            "target_id": 133,
+            "target_slot": 2,
+            "type": "SAMPLER"
+          },
+          {
+            "id": 35,
+            "origin_id": 129,
+            "origin_slot": 0,
+            "target_id": 133,
+            "target_slot": 3,
+            "type": "SIGMAS"
+          },
+          {
+            "id": 36,
+            "origin_id": 128,
+            "origin_slot": 0,
+            "target_id": 133,
+            "target_slot": 4,
+            "type": "LATENT"
+          },
+          {
+            "id": 37,
+            "origin_id": 133,
+            "origin_slot": 0,
+            "target_id": 134,
+            "target_slot": 0,
+            "type": "LATENT"
+          },
+          {
+            "id": 38,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 134,
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 39,
+            "origin_id": 134,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 224,
+            "origin_id": -10,
+            "origin_slot": 11,
+            "target_id": 129,
+            "target_slot": 0,
+            "type": "INT"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      },
+      {
+        "id": "2b8d6fa1-7c30-4b42-8e95-1d60c4f83b22",
+        "version": 1,
+        "state": {
+          "lastGroupId": 93,
+          "lastNodeId": 179,
+          "lastLinkId": 275,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "СТРАНИЦА — собирает 3 кадра",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -420,
+            60,
+            128,
+            108
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            892.8800000000002,
+            58.0639926147461,
+            128,
+            68
+          ]
+        },
+        "inputs": [
+          {
+            "id": "21dc5018-5e77-5959-bbee-b2d7918a4826",
+            "name": "panel_1",
+            "type": "IMAGE",
+            "linkIds": [
+              3
+            ],
+            "pos": [
+              -316,
+              84
+            ]
+          },
+          {
+            "id": "ef391abb-6915-51fb-b412-31ae48727336",
+            "name": "panel_2",
+            "type": "IMAGE",
+            "linkIds": [
+              1
+            ],
+            "pos": [
+              -316,
+              104
+            ]
+          },
+          {
+            "id": "0e43a9eb-5e6d-5601-8dca-b6b2a0b63055",
+            "name": "panel_3",
+            "type": "IMAGE",
+            "linkIds": [
+              2
+            ],
+            "pos": [
+              -316,
+              124
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "b9557275-eae0-5ff7-93d9-4175f176f972",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              7
+            ],
+            "pos": [
+              916.8800000000002,
+              82.0639926147461
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 135,
+            "type": "EmptyImage",
+            "pos": [
+              -16.19201477050769,
+              -122.90397415161134
+            ],
+            "size": [
+              280,
+              130
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  5
+                ]
+              }
+            ],
+            "title": "белый лист 1440x2032",
+            "properties": {
+              "Node name for S&R": "EmptyImage",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              1440,
+              2032,
+              1,
+              16777215
+            ],
+            "widgets_values_named": {
+              "width": 1440,
+              "height": 2032,
+              "batch_size": 1,
+              "color": 16777215
+            }
+          },
+          {
+            "id": 136,
+            "type": "ImageStitch",
+            "pos": [
+              -229.69597045898433,
+              230.31999999999994
+            ],
+            "size": [
+              300,
+              150
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "изображение1",
+                "name": "image1",
+                "type": "IMAGE",
+                "link": 1
+              },
+              {
+                "localized_name": "изображение2",
+                "name": "image2",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 2
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  4
+                ]
+              }
+            ],
+            "title": "нижний ярус: кадр 2 | кадр 3",
+            "properties": {
+              "Node name for S&R": "ImageStitch",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "right",
+              true,
+              32,
+              "white"
+            ],
+            "widgets_values_named": {
+              "direction": "right",
+              "match_image_size": true,
+              "spacing_width": 32,
+              "spacing_color": "white"
+            }
+          },
+          {
+            "id": 137,
+            "type": "ImageStitch",
+            "pos": [
+              121.26402954101567,
+              104.83999999999996
+            ],
+            "size": [
+              300,
+              150
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "изображение1",
+                "name": "image1",
+                "type": "IMAGE",
+                "link": 3
+              },
+              {
+                "localized_name": "изображение2",
+                "name": "image2",
+                "shape": 7,
+                "type": "IMAGE",
+                "link": 4
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  6
+                ]
+              }
+            ],
+            "title": "кадр 1 над ярусом",
+            "properties": {
+              "Node name for S&R": "ImageStitch",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "down",
+              true,
+              32,
+              "white"
+            ],
+            "widgets_values_named": {
+              "direction": "down",
+              "match_image_size": true,
+              "spacing_width": 32,
+              "spacing_color": "white"
+            }
+          },
+          {
+            "id": 138,
+            "type": "ImageCompositeMasked",
+            "pos": [
+              506.1040295410154,
+              40.967985229492186
+            ],
+            "size": [
+              300,
+              146
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "назначение",
+                "name": "destination",
+                "type": "IMAGE",
+                "link": 5
+              },
+              {
+                "localized_name": "источник",
+                "name": "source",
+                "type": "IMAGE",
+                "link": 6
+              },
+              {
+                "localized_name": "маска",
+                "name": "mask",
+                "shape": 7,
+                "type": "MASK",
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  7
+                ]
+              }
+            ],
+            "title": "поля 48 px",
+            "properties": {
+              "Node name for S&R": "ImageCompositeMasked",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              48,
+              48,
+              false
+            ],
+            "widgets_values_named": {
+              "x": 48,
+              "y": 48,
+              "resize_source": false
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 136,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 2,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 136,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 3,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 137,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 4,
+            "origin_id": 136,
+            "origin_slot": 0,
+            "target_id": 137,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 5,
+            "origin_id": 135,
+            "origin_slot": 0,
+            "target_id": 138,
+            "target_slot": 0,
+            "type": "IMAGE"
+          },
+          {
+            "id": 6,
+            "origin_id": 137,
+            "origin_slot": 0,
+            "target_id": 138,
+            "target_slot": 1,
+            "type": "IMAGE"
+          },
+          {
+            "id": 7,
+            "origin_id": 138,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      },
+      {
+        "id": "5d1f8ae4-9c62-4b70-a138-6e40f2b71d99",
+        "version": 1,
+        "state": {
+          "lastGroupId": 93,
+          "lastNodeId": 179,
+          "lastLinkId": 275,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Bubble Pass (Flux.2 edit)",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -820,
+            -100,
+            128,
+            228
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1500,
+            90,
+            128,
+            68
+          ]
+        },
+        "inputs": [
+          {
+            "id": "61be1ebc-f9b4-5ee5-b96d-65be23e9d59c",
+            "name": "model",
+            "type": "MODEL",
+            "linkIds": [
+              14
+            ],
+            "label": "model",
+            "pos": [
+              -716,
+              -76
+            ]
+          },
+          {
+            "id": "02315853-adab-5c2b-9be8-071c75ad394f",
+            "name": "clip",
+            "type": "CLIP",
+            "linkIds": [
+              1
+            ],
+            "label": "clip",
+            "pos": [
+              -716,
+              -56
+            ]
+          },
+          {
+            "id": "5c7e4712-466d-5dad-9430-54a360a89407",
+            "name": "vae",
+            "type": "VAE",
+            "linkIds": [
+              7,
+              23
+            ],
+            "label": "vae",
+            "pos": [
+              -716,
+              -36
+            ]
+          },
+          {
+            "id": "9f18c25f-9a72-53df-ac3f-b4edd7cb0e87",
+            "name": "image",
+            "type": "IMAGE",
+            "linkIds": [
+              6
+            ],
+            "label": "готовый кадр",
+            "pos": [
+              -716,
+              -16
+            ]
+          },
+          {
+            "id": "7eb675d5-8192-5855-85cf-37b76b4188f6",
+            "name": "text",
+            "type": "STRING",
+            "linkIds": [
+              2
+            ],
+            "label": "что дорисовать",
+            "pos": [
+              -716,
+              4
+            ]
+          },
+          {
+            "id": "388f7a26-fbf2-5055-a398-c5301a0ac8d9",
+            "name": "width",
+            "type": "INT",
+            "linkIds": [
+              8,
+              11
+            ],
+            "label": "ширина кадра",
+            "pos": [
+              -716,
+              24
+            ]
+          },
+          {
+            "id": "5b69df9c-b4a7-5ced-b200-950320719ad7",
+            "name": "height",
+            "type": "INT",
+            "linkIds": [
+              9,
+              12
+            ],
+            "label": "высота кадра",
+            "pos": [
+              -716,
+              44
+            ]
+          },
+          {
+            "id": "7084d160-1cd9-5fb2-bd2c-777cc0290cde",
+            "name": "seed",
+            "type": "INT",
+            "linkIds": [
+              13
+            ],
+            "label": "сид бабла",
+            "pos": [
+              -716,
+              64
+            ]
+          },
+          {
+            "id": "d3254899-1a5a-50ef-8191-5030cf0360bb",
+            "name": "steps",
+            "type": "INT",
+            "linkIds": [
+              10
+            ],
+            "label": "шаги",
+            "pos": [
+              -716,
+              84
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "5903e2d2-f818-53a7-9cbf-045ba0e88cd3",
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "linkIds": [
+              24
+            ],
+            "pos": [
+              1524,
+              114
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 168,
+            "type": "CLIPTextEncode",
+            "pos": [
+              -520,
+              -120
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "clip",
+                "name": "clip",
+                "type": "CLIP",
+                "link": 1
+              },
+              {
+                "localized_name": "текст",
+                "name": "text",
+                "type": "STRING",
+                "widget": {
+                  "name": "text"
+                },
+                "link": 2
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "КОНДИЦИОНИРОВАНИЕ",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  3,
+                  4
+                ]
+              }
+            ],
+            "title": "инструкция редактирования",
+            "properties": {
+              "Node name for S&R": "CLIPTextEncode",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              ""
+            ],
+            "widgets_values_named": {
+              "text": ""
+            }
+          },
+          {
+            "id": 169,
+            "type": "ConditioningZeroOut",
+            "pos": [
+              -520,
+              120
+            ],
+            "size": [
+              250,
+              30
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "условие",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 3
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "КОНДИЦИОНИРОВАНИЕ",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  5
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "ConditioningZeroOut",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 170,
+            "type": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709",
+            "pos": [
+              -140,
+              40
+            ],
+            "size": [
+              300,
+              110
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "positive",
+                "name": "conditioning",
+                "type": "CONDITIONING",
+                "link": 4
+              },
+              {
+                "label": "negative",
+                "name": "conditioning_1",
+                "type": "CONDITIONING",
+                "link": 5
+              },
+              {
+                "name": "pixels",
+                "type": "IMAGE",
+                "link": 6
+              },
+              {
+                "name": "vae",
+                "type": "VAE",
+                "link": 7
+              }
+            ],
+            "outputs": [
+              {
+                "label": "positive",
+                "name": "CONDITIONING",
+                "type": "CONDITIONING",
+                "links": [
+                  15
+                ]
+              },
+              {
+                "label": "negative",
+                "name": "CONDITIONING_1",
+                "type": "CONDITIONING",
+                "links": [
+                  16
+                ]
+              }
+            ],
+            "title": "кадр как reference latent",
+            "properties": {
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              },
+              "previewExposures": []
+            }
+          },
+          {
+            "id": 173,
+            "type": "KSamplerSelect",
+            "pos": [
+              220,
+              100
+            ],
+            "size": [
+              280,
+              60
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "localized_name": "СЭМПЛЕР",
+                "name": "SAMPLER",
+                "type": "SAMPLER",
+                "links": [
+                  19
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "KSamplerSelect",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              "euler"
+            ],
+            "widgets_values_named": {
+              "sampler_name": "euler"
+            }
+          },
+          {
+            "id": 174,
+            "type": "RandomNoise",
+            "pos": [
+              220,
+              200
+            ],
+            "size": [
+              280,
+              82
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "сид_шума",
+                "name": "noise_seed",
+                "type": "INT",
+                "widget": {
+                  "name": "noise_seed"
+                },
+                "link": 13
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ШУМ",
+                "name": "NOISE",
+                "type": "NOISE",
+                "links": [
+                  17
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "RandomNoise",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              0,
+              "fixed"
+            ],
+            "widgets_values_named": {
+              "noise_seed": 0,
+              "control_after_generate": "fixed"
+            }
+          },
+          {
+            "id": 177,
+            "type": "VAEDecode",
+            "pos": [
+              1200,
+              100
+            ],
+            "size": [
+              250,
+              50
+            ],
+            "flags": {},
+            "order": 9,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "образцы",
+                "name": "samples",
+                "type": "LATENT",
+                "link": 22
+              },
+              {
+                "localized_name": "vae",
+                "name": "vae",
+                "type": "VAE",
+                "link": 23
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ИЗОБРАЖЕНИЕ",
+                "name": "IMAGE",
+                "type": "IMAGE",
+                "links": [
+                  24
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "VAEDecode",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            }
+          },
+          {
+            "id": 171,
+            "type": "EmptyFlux2LatentImage",
+            "pos": [
+              240.24635676301097,
+              -242.54289052374762
+            ],
+            "size": [
+              280,
+              106
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "ширина",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 8
+              },
+              {
+                "localized_name": "высота",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 9
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ЛАТЕНТНЫЙ",
+                "name": "LATENT",
+                "type": "LATENT",
+                "links": [
+                  21
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "EmptyFlux2LatentImage",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              656,
+              1184,
+              1
+            ],
+            "widgets_values_named": {
+              "width": 656,
+              "height": 1184,
+              "batch_size": 1
+            }
+          },
+          {
+            "id": 172,
+            "type": "Flux2Scheduler",
+            "pos": [
+              234.01674051855602,
+              -78.15662971332259
+            ],
+            "size": [
+              280,
+              106
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "steps",
+                "name": "steps",
+                "type": "INT",
+                "widget": {
+                  "name": "steps"
+                },
+                "link": 10
+              },
+              {
+                "localized_name": "width",
+                "name": "width",
+                "type": "INT",
+                "widget": {
+                  "name": "width"
+                },
+                "link": 11
+              },
+              {
+                "localized_name": "height",
+                "name": "height",
+                "type": "INT",
+                "widget": {
+                  "name": "height"
+                },
+                "link": 12
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "СИГМЫ",
+                "name": "SIGMAS",
+                "type": "SIGMAS",
+                "links": [
+                  20
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "Flux2Scheduler",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              8,
+              656,
+              1184
+            ],
+            "widgets_values_named": {
+              "steps": 8,
+              "width": 656,
+              "height": 1184
+            }
+          },
+          {
+            "id": 175,
+            "type": "CFGGuider",
+            "pos": [
+              505.4905459554212,
+              356.9731404958674
+            ],
+            "size": [
+              280,
+              100
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "модель",
+                "name": "model",
+                "type": "MODEL",
+                "link": 14
+              },
+              {
+                "localized_name": "положительный",
+                "name": "positive",
+                "type": "CONDITIONING",
+                "link": 15
+              },
+              {
+                "localized_name": "отрицательный",
+                "name": "negative",
+                "type": "CONDITIONING",
+                "link": 16
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "ГИД",
+                "name": "GUIDER",
+                "type": "GUIDER",
+                "links": [
+                  18
+                ]
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "CFGGuider",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [
+              1
+            ],
+            "widgets_values_named": {
+              "cfg": 1
+            }
+          },
+          {
+            "id": 176,
+            "type": "SamplerCustomAdvanced",
+            "pos": [
+              880,
+              100
+            ],
+            "size": [
+              299.11875,
+              326
+            ],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+              {
+                "localized_name": "шум",
+                "name": "noise",
+                "type": "NOISE",
+                "link": 17
+              },
+              {
+                "localized_name": "гид",
+                "name": "guider",
+                "type": "GUIDER",
+                "link": 18
+              },
+              {
+                "localized_name": "сэмплер",
+                "name": "sampler",
+                "type": "SAMPLER",
+                "link": 19
+              },
+              {
+                "localized_name": "сигмы",
+                "name": "sigmas",
+                "type": "SIGMAS",
+                "link": 20
+              },
+              {
+                "localized_name": "латентное_изображение",
+                "name": "latent_image",
+                "type": "LATENT",
+                "link": 21
+              }
+            ],
+            "outputs": [
+              {
+                "localized_name": "выход",
+                "name": "output",
+                "type": "LATENT",
+                "links": [
+                  22
+                ]
+              },
+              {
+                "localized_name": "выход без шума",
+                "name": "denoised_output",
+                "type": "LATENT",
+                "links": null
+              }
+            ],
+            "properties": {
+              "Node name for S&R": "SamplerCustomAdvanced",
+              "cnr_id": "comfy-core",
+              "ver": "0.8.2",
+              "enableTabs": false,
+              "tabWidth": 65,
+              "tabXOffset": 10,
+              "hasSecondTab": false,
+              "secondTabText": "Send Back",
+              "secondTabOffset": 80,
+              "secondTabWidth": 65,
+              "ue_properties": {
+                "widget_ue_connectable": {},
+                "version": "7.7",
+                "input_ue_unconnectable": {}
+              }
+            },
+            "widgets_values": [],
+            "widgets_values_named": {}
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 1,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 168,
+            "target_slot": 0,
+            "type": "CLIP"
+          },
+          {
+            "id": 2,
+            "origin_id": -10,
+            "origin_slot": 4,
+            "target_id": 168,
+            "target_slot": 1,
+            "type": "STRING"
+          },
+          {
+            "id": 3,
+            "origin_id": 168,
+            "origin_slot": 0,
+            "target_id": 169,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 4,
+            "origin_id": 168,
+            "origin_slot": 0,
+            "target_id": 170,
+            "target_slot": 0,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 5,
+            "origin_id": 169,
+            "origin_slot": 0,
+            "target_id": 170,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 6,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 170,
+            "target_slot": 2,
+            "type": "IMAGE"
+          },
+          {
+            "id": 7,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 170,
+            "target_slot": 3,
+            "type": "VAE"
+          },
+          {
+            "id": 8,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 171,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 9,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 171,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 10,
+            "origin_id": -10,
+            "origin_slot": 8,
+            "target_id": 172,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 11,
+            "origin_id": -10,
+            "origin_slot": 5,
+            "target_id": 172,
+            "target_slot": 1,
+            "type": "INT"
+          },
+          {
+            "id": 12,
+            "origin_id": -10,
+            "origin_slot": 6,
+            "target_id": 172,
+            "target_slot": 2,
+            "type": "INT"
+          },
+          {
+            "id": 13,
+            "origin_id": -10,
+            "origin_slot": 7,
+            "target_id": 174,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 14,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 175,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 15,
+            "origin_id": 170,
+            "origin_slot": 0,
+            "target_id": 175,
+            "target_slot": 1,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 16,
+            "origin_id": 170,
+            "origin_slot": 1,
+            "target_id": 175,
+            "target_slot": 2,
+            "type": "CONDITIONING"
+          },
+          {
+            "id": 17,
+            "origin_id": 174,
+            "origin_slot": 0,
+            "target_id": 176,
+            "target_slot": 0,
+            "type": "NOISE"
+          },
+          {
+            "id": 18,
+            "origin_id": 175,
+            "origin_slot": 0,
+            "target_id": 176,
+            "target_slot": 1,
+            "type": "GUIDER"
+          },
+          {
+            "id": 19,
+            "origin_id": 173,
+            "origin_slot": 0,
+            "target_id": 176,
+            "target_slot": 2,
+            "type": "SAMPLER"
+          },
+          {
+            "id": 20,
+            "origin_id": 172,
+            "origin_slot": 0,
+            "target_id": 176,
+            "target_slot": 3,
+            "type": "SIGMAS"
+          },
+          {
+            "id": 21,
+            "origin_id": 171,
+            "origin_slot": 0,
+            "target_id": 176,
+            "target_slot": 4,
+            "type": "LATENT"
+          },
+          {
+            "id": 22,
+            "origin_id": 176,
+            "origin_slot": 0,
+            "target_id": 177,
+            "target_slot": 0,
+            "type": "LATENT"
+          },
+          {
+            "id": 23,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 177,
+            "target_slot": 1,
+            "type": "VAE"
+          },
+          {
+            "id": 24,
+            "origin_id": 177,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "IMAGE"
+          }
+        ],
+        "extra": {
+          "workflowRendererVersion": "LG"
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.323491843076096,
+      "offset": [
+        2386.3636505844847,
+        918.1144534695388
+      ]
+    },
+    "frontendVersion": "1.51.10"
+  },
+  "version": 0.4
+}

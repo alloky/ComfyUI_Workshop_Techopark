@@ -1,0 +1,7 @@
+# исходники, которые не нужны на GitHub Pages
+_source/
+
+# системное
+.DS_Store
+Thumbs.db
+desktop.ini

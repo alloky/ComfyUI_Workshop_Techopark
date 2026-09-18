@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ComfyUI: собираем нейросеть, как конструктор</title>
+<meta name="description" content="Мастер-класс по ComfyUI для школьников. Технопарк МФТИ.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="stylesheet" href="presentation/reveal/dist/reset.css">
+<link rel="stylesheet" href="presentation/reveal/dist/reveal.css">
+<link rel="stylesheet" href="presentation/css/avito-start.css">
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ======================================================================
+     ВСТУПЛЕНИЕ
+     ====================================================================== -->
+
+<!-- 1. Титул -->
+<section class="title-slide">
+  <div class="chiprow">
+    <span class="chip green"></span>
+    <span class="chip purple"></span>
+    <span class="chip blue"></span>
+    <span class="chip red"></span>
+  </div>
+  <h1>ComfyUI: собираем нейросеть,<br>как конструктор</h1>
+  <p class="subtitle">Мастер-класс &middot; Технопарк МФТИ</p>
+  <div class="pinwheel"></div>
+  <aside class="notes">
+    Поздороваться. Сегодня ничего ставить не нужно — всё показываю сам,
+    ссылка на материалы будет в конце по QR.
+  </aside>
+</section>
+
+<!-- 2. Вопрос в зал -->
+<section class="hero">
+  <div class="deco" style="right:-70px;bottom:-70px;width:440px">
+    <img src="assets/template/confetti.png" alt="">
+  </div>
+  <p class="huge">Сколько будет корень из двух?</p>
+  <aside class="notes">
+    Дать залу 10–15 секунд. Кто-то скажет «1,41». Спросить: а как вы это узнали?
+    Ответ — запомнили. Компьютер не запоминал: он находит это заново каждый раз.
+    Переходим к демо.
+  </aside>
+</section>
+
+<!-- 3. Живое демо: градиентный спуск -->
+<section class="demo bare" data-background-color="#f5f7fb">
+  <iframe data-src="presentation/demos/gradient.html?embed=1"
+          title="Интерактивное демо: градиентный спуск ищет корень из двух"
+          allowfullscreen></iframe>
+  <aside class="notes">
+    Начальная догадка 2.5 — жмём «Сделать шаг» несколько раз, число ползёт к 1.414.
+    Потом ломаем: η = 0.15 — точку выбрасывает. η = 0.002 — ползёт вечно.
+    Вывод: длина шага решает всё. Это и есть обучение.
+  </aside>
+</section>
+
+<!-- 4. Вывод из демо -->
+<section>
+  <h2>Так учится любая нейросеть</h2>
+  <div class="cards c3">
+    <div class="card filled green">
+      <img class="icon" src="assets/template/rocket.png" alt="">
+      <div class="cap">Попробовала</div>
+    </div>
+    <div class="card filled red">
+      <img class="icon" src="assets/template/thumb-down.png" alt="">
+      <div class="cap">Промахнулась</div>
+    </div>
+    <div class="card filled blue">
+      <img class="icon" src="assets/template/thumb-up.png" alt="">
+      <div class="cap">Подвинулась ближе</div>
+    </div>
+  </div>
+  <aside class="notes">
+    Тот же цикл, что был на экране, только вместо одного числа x — миллиарды.
+    Спросить: сколько шагов мы сделали до 1.41? А теперь представьте миллионы.
+  </aside>
+</section>
+
+<!-- 5. Спикер -->
+<!-- TODO: подставить имя, должность и факты о себе -->
+<section>
+  <h2>Кто это рассказывает</h2>
+  <div class="speaker">
+    <div class="photo">
+      <img src="assets/me2026.jpg" alt="Фотография спикера">
+    </div>
+    <div>
+      <div class="role">ДОЛЖНОСТЬ / КОМПАНИЯ / КОМАНДА</div>
+      <div class="facts">
+        <div class="fact"><span class="chip green"></span><span class="txt">Имя Фамилия</span></div>
+        <div class="fact"><span class="chip purple"></span><span class="txt">Чем занимаюсь каждый день</span></div>
+        <div class="fact"><span class="chip blue"></span><span class="txt">Что делал с генеративными моделями</span></div>
+        <div class="fact"><span class="chip red"></span><span class="txt">Несерьёзный факт, без которого никак</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6-8. ПЛЕЙСХОЛДЕРЫ: блок про кружок по нейросетям -->
+
+<section class="placeholder">
+  <h2>Кружок по нейросетям &mdash; заголовок</h2>
+  <p class="lead muted">Слайд 1 из 3. Замени этот блок на присланные материалы.</p>
+  <div class="cards c3" style="flex:1 1 auto">
+    <div class="ph">Блок 1<br>текст или иконка</div>
+    <div class="ph">Блок 2<br>текст или иконка</div>
+    <div class="ph">Блок 3<br>текст или иконка</div>
+  </div>
+</section>
+
+<section class="placeholder">
+  <h2>Кружок по нейросетям &mdash; что изучаем</h2>
+  <div class="split" style="flex:1 1 auto">
+    <div class="ph grow">Сюда картинку<br>(скриншот, фото занятия, схема программы)</div>
+    <div>
+      <ul class="bullets">
+        <li class="muted">Пункт программы&nbsp;&mdash; заменить</li>
+        <li class="muted">Пункт программы&nbsp;&mdash; заменить</li>
+        <li class="muted">Пункт программы&nbsp;&mdash; заменить</li>
+        <li class="muted">Пункт программы&nbsp;&mdash; заменить</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="placeholder">
+  <h2>Кружок по нейросетям &mdash; как записаться</h2>
+  <p class="lead muted">Слайд 3 из 3. Сюда обычно ставят условия набора и QR&nbsp;на запись.</p>
+  <div class="split" style="flex:1 1 auto">
+    <div>
+      <ul class="bullets">
+        <li class="muted">Для кого и с какого класса</li>
+        <li class="muted">Когда и где проходят занятия</li>
+        <li class="muted">Что нужно знать заранее</li>
+      </ul>
+    </div>
+    <div class="ph grow">Сюда QR&nbsp;на запись<br>или ссылку</div>
+  </div>
+</section>
+
+<!-- 9. О чём поговорим -->
+<section>
+  <div class="deco" style="right:-10px;bottom:0;width:290px">
+    <img src="assets/template/person-jump.png" alt="">
+  </div>
+  <h2>О чём поговорим</h2>
+  <div class="numlist">
+    <div class="row">
+      <div class="n">1.</div>
+      <div class="txt">Как модель учится рисовать</div>
+    </div>
+    <div class="row">
+      <div class="n">2.</div>
+      <div class="txt"><b>ComfyUI</b>: ноды и провода</div>
+    </div>
+    <div class="row">
+      <div class="n">3.</div>
+      <div class="txt">Делаем мем &mdash; вживую</div>
+    </div>
+    <div class="row">
+      <div class="n">4.</div>
+      <div class="txt">Собираем <b>страницу манги</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     КАК УЧИТСЯ МОДЕЛЬ
+     ====================================================================== -->
+
+<!-- 10. Схема обучения -->
+<section>
+  <h2>Что происходит при обучении</h2>
+  <svg class="diagram" viewBox="0 0 1200 470" preserveAspectRatio="xMidYMid meet"
+       role="img" aria-label="Схема обучения генеративной модели">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#000"/>
+      </marker>
+      <marker id="ahr" viewBox="0 0 10 10" refX="9" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#ff3f53"/>
+      </marker>
+    </defs>
+
+    <!-- верхний ряд: от описания до готовой картинки -->
+    <rect x="0"   y="40" width="170" height="90" rx="12" fill="#badafc"/>
+    <text class="lbl" x="85"  y="93">Описание</text>
+
+    <rect x="222" y="40" width="210" height="90" rx="12" fill="#dfcef3"/>
+    <text class="lbl" x="327" y="93">Text Encoder</text>
+
+    <rect x="484" y="40" width="210" height="90" rx="12" fill="#c9ffbf"/>
+    <text class="lbl" x="589" y="82">Генератор</text>
+    <text class="sub" x="589" y="106">начинает с шума</text>
+
+    <rect x="746" y="40" width="150" height="90" rx="12" fill="#dfcef3"/>
+    <text class="lbl" x="821" y="93">VAE</text>
+
+    <rect x="948" y="40" width="252" height="90" rx="12" fill="#f2f2f2"/>
+    <text class="lbl" x="1074" y="93">Что вышло</text>
+
+    <path class="flow" d="M176,85 H216" marker-end="url(#ah)"/>
+    <path class="flow" d="M438,85 H478" marker-end="url(#ah)"/>
+    <path class="flow" d="M700,85 H740" marker-end="url(#ah)"/>
+    <path class="flow" d="M902,85 H942" marker-end="url(#ah)"/>
+
+    <!-- нижний ряд: проверка -->
+    <rect x="0"   y="300" width="260" height="90" rx="12" fill="#c9ffbf"/>
+    <text class="lbl" x="130" y="341">Настоящие</text>
+    <text class="lbl" x="130" y="371">картинки</text>
+
+    <rect x="330" y="300" width="190" height="90" rx="12" fill="#f8c1c6"/>
+    <text class="lbl" x="425" y="353">Критик</text>
+
+    <rect x="575" y="300" width="190" height="90" rx="12" fill="#000000"/>
+    <text class="lbl lbl-w" x="670" y="353">Ошибка</text>
+
+    <path class="flow" d="M266,345 H324" marker-end="url(#ah)"/>
+    <path class="flow" d="M526,345 H569" marker-end="url(#ah)"/>
+
+    <!-- готовая картинка уходит на проверку -->
+    <path class="flow" d="M1074,136 V425 H425 V396" marker-end="url(#ah)"/>
+    <text class="sub" x="760" y="452">сравниваем с настоящими</text>
+
+    <!-- ошибка возвращается в генератор -->
+    <path class="back" d="M670,294 V136" marker-end="url(#ahr)"/>
+    <text class="note" x="692" y="222">подкрутить веса</text>
+  </svg>
+  <aside class="notes">
+    Генератор рисует, критик отличает настоящее от нарисованного, ошибка возвращается
+    и чуть-чуть двигает веса. Ровно тот же спуск, что был на демо.
+    Text Encoder — где живёт промпт: слова превращаются в эмбеддинг, набор чисел.
+    VAE — то, что переводит внутреннее представление в обычные пиксели.
+  </aside>
+</section>
+
+<!-- ======================================================================
+     COMFYUI: НОДЫ И ПРОВОДА
+     ====================================================================== -->
+
+<!-- 11. Разделитель 01 -->
+<section class="divider invert" data-background-color="#000000">
+  <div class="band" style="background:var(--purple)">
+    <h2>ComfyUI:<br>ноды и провода</h2>
+  </div>
+  <div class="sectionno" style="background:var(--green);color:#000">01</div>
+</section>
+
+<!-- 12. Нода -->
+<section>
+  <h2>Нода</h2>
+  <div class="split wide-left">
+    <div class="pic"><img src="assets/crop_node.png" alt="Крупный план ноды «Загрузить изображение»"></div>
+    <div class="txtcol">
+      <ul class="bullets tight">
+        <li>Название</li>
+        <li>Настройки</li>
+        <li>Вход слева, выход справа</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    Одна нода — одно действие. Эта просто открывает картинку с диска.
+    Показать пальцем: заголовок, крутилки, точки по бокам.
+  </aside>
+</section>
+
+<!-- 13. Провода -->
+<section>
+  <h2>Провода</h2>
+  <div class="split wide-left">
+    <div class="pic"><img src="assets/crop_wires.png" alt="Провода между нодами в ComfyUI"></div>
+    <div class="txtcol">
+      <ul class="bullets tight">
+        <li>Цвет&nbsp;&mdash; это тип данных</li>
+        <li>Картинка, текст, модель</li>
+        <li>Не тот тип&nbsp;&mdash; не соединится</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    Показать, как тянется провод. Попробовать воткнуть картинку в текстовый вход —
+    ComfyUI не даст. Это и есть защита от ошибок.
+  </aside>
+</section>
+
+<!-- 14. Весь воркфлоу -->
+<section class="figure-full invert" data-background-color="#1e1e1e">
+  <img src="ComfyUI_Workflows/screenshots/meme_generation_workflow.png"
+       alt="Полный воркфлоу генерации мема в ComfyUI">
+  <div class="figcap">Мем целиком &mdash; пять нод</div>
+  <aside class="notes">
+    Обвести взглядом три зоны: что загружаем слева, что делаем в центре, что сохраняем справа.
+  </aside>
+</section>
+
+<!-- 15. Что внутри модели -->
+<section>
+  <h2>Что внутри модели</h2>
+  <div class="cards c3">
+    <div class="card filled green">
+      <img class="icon" src="assets/template/bubble.png" alt="">
+      <div class="cap">Переводчик</div>
+      <div class="txt"><code>qwen_3_4b</code></div>
+    </div>
+    <div class="card filled purple">
+      <img class="icon" src="assets/template/pill.png" alt="">
+      <div class="cap">Художник</div>
+      <div class="txt"><code>flux-2-klein-4b</code></div>
+    </div>
+    <div class="card filled blue">
+      <img class="icon" src="assets/template/gem.png" alt="">
+      <div class="cap">Проявитель</div>
+      <div class="txt"><code>flux2-vae</code></div>
+    </div>
+  </div>
+  <aside class="notes">
+    Переводчик (CLIP) — слова в числа. Художник (UNET) — из шума в картинку.
+    Проявитель (VAE) — из внутреннего представления в PNG.
+    Это те же три коробочки, что были на схеме обучения.
+  </aside>
+</section>
+
+<!-- 16. Откуда берутся модели -->
+<section>
+  <h2>Откуда берутся модели</h2>
+  <div class="split wide-right">
+    <div class="txtcol">
+      <ul class="bullets tight">
+        <li><code>.safetensors</code>, несколько гигабайт</li>
+        <li>Качаются с <b>HuggingFace</b></li>
+        <li>Каждый файл&nbsp;&mdash; в свою папку</li>
+      </ul>
+      <img src="assets/hf-logo-with-title.png" alt="HuggingFace"
+           style="width:220px;margin-top:30px;border:none;box-shadow:none;background:none">
+    </div>
+    <div class="pic"><img src="ComfyUI_Workflows/screenshots/markdown_with_install_instructions.png"
+                          alt="Ссылки на модели и структура папок ComfyUI"></div>
+  </div>
+  <aside class="notes">
+    HuggingFace — площадка, где выкладывают модели; для нейросетей она примерно то же,
+    чем GitHub стал для кода. Всё бесплатно, регистрация нужна не всегда.
+  </aside>
+</section>
+
+<!-- 17. Сабграф -->
+<section>
+  <h2>Сабграф</h2>
+  <div class="split wide-left">
+    <div class="pic"><img src="assets/crop_subgraph.png" alt="Нода-сабграф Image Edit в ComfyUI"></div>
+    <div class="txtcol">
+      <div class="bignum">17</div>
+      <p class="lead">нод спрятано внутри этой одной</p>
+      <img src="assets/template/squares.png" alt=""
+           style="width:130px;margin-top:34px;border:none;box-shadow:none;background:none">
+    </div>
+  </div>
+  <aside class="notes">
+    Двойной клик — и мы внутри. Тот же приём, что функция в программировании:
+    свернули кусок, чтобы не мешался.
+  </aside>
+</section>
+
+<!-- 18. Как поставить себе домой -->
+<section>
+  <h2>Как поставить себе домой</h2>
+  <div class="split wide-left">
+    <div class="txtcol">
+      <ul class="bullets">
+        <li><b>Stability Matrix</b> сам скачает ComfyUI</li>
+        <li>Внутри ComfyUI&nbsp;&mdash; <b>Manager</b> для моделей</li>
+        <li>Всё считается на своей видеокарте</li>
+      </ul>
+    </div>
+    <div class="qr stack">
+      <div class="code" data-qr="pagesUrl"></div>
+      <div class="cap">
+        Инструкция и оба воркфлоу
+        <span class="url" data-url="pagesUrl"></span>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Бесплатно, без подписок и лимитов. Картинки никуда не уходят — всё локально.
+    Сказать про требования: видеокарта NVIDIA, 8 ГБ видеопамяти хватит для модели 4B.
+  </aside>
+</section>
+
+<!-- ======================================================================
+     ДЕМО
+     ====================================================================== -->
+
+<!-- 19. Переход к демо -->
+<section class="hero invert" data-background-color="#000000">
+  <div class="deco" style="right:60px;bottom:60px;width:230px">
+    <img src="assets/template/play.png" alt="">
+  </div>
+  <p class="huge">Покажем в&nbsp;ComfyUI</p>
+  <aside class="notes">
+    Переключиться на окно ComfyUI. Вернуться на следующий слайд, когда закончу.
+  </aside>
+</section>
+
+<!-- 20. Что происходит на демо -->
+<section>
+  <h2>Что сейчас на экране</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="n">1</div>
+      <div class="body"><div class="cap">Перетаскиваем <code>.json</code> в окно</div></div>
+    </div>
+    <div class="step">
+      <div class="n">2</div>
+      <div class="body"><div class="cap">Две картинки</div></div>
+    </div>
+    <div class="step">
+      <div class="n">3</div>
+      <div class="body"><div class="cap">Промпт по пунктам</div></div>
+    </div>
+    <div class="step">
+      <div class="n">4</div>
+      <div class="body"><div class="cap">Run</div></div>
+    </div>
+    <div class="step">
+      <div class="n">5</div>
+      <div class="body"><div class="cap">Забираем из <code>output/</code></div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    Про промпт: работает список требований, а не «сделай красиво».
+    Отдельным пунктом — про руки, иначе вырастет лишняя.
+    Вокруг работающей ноды бежит рамка — видно, где мы сейчас.
+  </aside>
+</section>
+
+<!-- ======================================================================
+     СТРАНИЦА МАНГИ
+     ====================================================================== -->
+
+<!-- 21. Разделитель 02 -->
+<section class="divider invert" data-background-color="#000000">
+  <div class="band" style="background:var(--blue)">
+    <h2>А теперь &mdash;<br>целая страница манги</h2>
+  </div>
+  <div class="sectionno" style="background:var(--red)">02</div>
+</section>
+
+<!-- 22. Результат -->
+<section class="figure-full">
+  <img src="assets/final_page.png" alt="Готовая страница манги, собранная в ComfyUI">
+  <div class="figcap left">1440 &times; 2032</div>
+  <aside class="notes">
+    Дать залу несколько секунд молча. Потом спросить, что здесь нарисовано моделью.
+    Ответ — всё, ни одного кадра из интернета.
+  </aside>
+</section>
+
+<!-- 23. Из чего собрана -->
+<section>
+  <h2>Из чего она собрана</h2>
+  <div class="timeline">
+    <div class="step">
+      <div class="n">01</div>
+      <div class="cap">Референсы</div>
+      <div class="txt">Персонажи и стиль&nbsp;&mdash; картинками</div>
+    </div>
+    <div class="step">
+      <div class="n">02</div>
+      <div class="cap">Три кадра</div>
+      <div class="txt">Каждый отдельно</div>
+    </div>
+    <div class="step">
+      <div class="n">03</div>
+      <div class="cap">Баблы</div>
+      <div class="txt">Вторым проходом</div>
+    </div>
+    <div class="step">
+      <div class="n">04</div>
+      <div class="cap">Страница</div>
+      <div class="txt">Склейка на белом листе</div>
+    </div>
+  </div>
+</section>
+
+<!-- 24. Приём 1: Canny -->
+<section>
+  <h2>Приём 1: поза с фотографии</h2>
+  <div class="split wide-left">
+    <div class="pic"><img src="ComfyUI_Workflows/screenshots/gestures_pipeline.png"
+                          alt="Пайплайн: фото руки превращается в Canny-контур"></div>
+    <div class="txtcol">
+      <ul class="bullets tight">
+        <li>Фото &rarr; контур (<b>Canny</b>)</li>
+        <li>Модель повторяет жест</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    Словами «щёлкни пальцами вот так» объяснить невозможно — пробовал, выходит каша.
+    Зато можно показать картинкой. Лицо и одежду модель берёт уже с других референсов.
+  </aside>
+</section>
+
+<!-- 25. Приём 2: кроп лиц -->
+<section>
+  <h2>Приём 2: лицо отдельно от рук</h2>
+  <div class="split wide-left">
+    <div class="pic"><img src="ComfyUI_Workflows/screenshots/main_character_cropping_pipeline.png"
+                          alt="Пайплайн: из кадра вырезаются только лица, без рук"></div>
+    <div class="txtcol">
+      <ul class="bullets tight">
+        <li>Вырезали только лицо</li>
+        <li>Иначе копируются и пальцы</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    На одном из прогонов у Гарри выросла шестая рука — ровно из-за того,
+    что в референс попали чужие пальцы. Вот такие хитрости и есть основная работа.
+  </aside>
+</section>
+
+<!-- 26. Приём 3: баблы -->
+<section>
+  <h2>Приём 3: баблы вторым проходом</h2>
+  <div class="split">
+    <div class="pic"><img src="ComfyUI_Workflows/screenshots/text_bubbles_pipeline.png"
+                          alt="Пайплайн: на готовый кадр дорисовывается речевой бабл"></div>
+    <div class="txtcol">
+      <ul class="bullets tight">
+        <li>Сначала чистый кадр</li>
+        <li>Потом текст&nbsp;&mdash; дословно</li>
+      </ul>
+      <img src="assets/template/bubble.png" alt=""
+           style="width:150px;margin-top:34px;border:none;box-shadow:none;background:none">
+    </div>
+  </div>
+  <aside class="notes">
+    За один проход модель почти всегда пишет в бабле абракадабру.
+    Вторым проходом текст задаётся дословно, и кадр не портится.
+  </aside>
+</section>
+
+<!-- 27. Приём 4: сборка -->
+<section>
+  <h2>Приём 4: сборка страницы</h2>
+  <div class="split wide-left">
+    <div class="pic"><img src="ComfyUI_Workflows/screenshots/page_merging_pipeline.png"
+                          alt="Пайплайн сборки страницы из трёх кадров"></div>
+    <div class="txtcol">
+      <ul class="bullets tight">
+        <li>Лист <b>1440&times;2032</b></li>
+        <li>Отступ 32&nbsp;px, поля 48&nbsp;px</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    Здесь нейросети уже нет вообще — обычная вёрстка нодами.
+    Белый лист, два стыка, поля. Всё.
+  </aside>
+</section>
+
+<!-- 28. 5 против 40 -->
+<section>
+  <h2>Мем и страница манги</h2>
+  <div class="duo">
+    <div class="pane green">
+      <div class="xnum">5</div>
+      <div class="cap">нод</div>
+    </div>
+    <div class="pane blue">
+      <div class="xnum">40</div>
+      <div class="cap">нод</div>
+      <div class="txt">5 групп &middot; 4 сабграфа &middot; 62 провода</div>
+    </div>
+  </div>
+  <aside class="notes">
+    Каждая нода в обеих схемах одинаково простая. Отличается только количество.
+    Никакой магии в большой схеме нет — её собирали по кусочку.
+  </aside>
+</section>
+
+<!-- 29. Честно про время -->
+<section class="hero">
+  <div class="deco" style="right:-20px;bottom:-10px;width:430px">
+    <img src="assets/template/person-tired.png" alt="">
+  </div>
+  <p class="huge">На это ушёл вечер</p>
+  <p class="note">Промпты переписывались, кадры перезапускались, у&nbsp;Гарри пару раз вырастала лишняя рука.</p>
+  <aside class="notes">
+    Важно проговорить: с первого раза не получается почти никогда.
+    Это нормальная часть работы, а не признак того, что вы что-то делаете не так.
+  </aside>
+</section>
+
+<!-- ======================================================================
+     ФИНАЛ
+     ====================================================================== -->
+
+<!-- 30. Границы -->
+<section>
+  <h2>Честно о границах</h2>
+  <div class="compare">
+    <div class="col neutral">
+      <h4><img src="assets/template/cross.png" alt="">Пока выходит плохо</h4>
+      <ul class="bullets">
+        <li>Руки и пальцы</li>
+        <li>Надписи внутри картинки</li>
+        <li>«Ровно пять предметов»</li>
+      </ul>
+    </div>
+    <div class="col bad">
+      <h4><img src="assets/template/thumb-down.png" alt="">Так делать нельзя</h4>
+      <ul class="bullets">
+        <li>Чужое лицо без разрешения</li>
+        <li>Выдавать за настоящее фото</li>
+        <li>Дипфейки</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    Про руки: моделей это касается всё меньше, но проверять всё равно надо.
+    Про дипфейки — коротко, без морали: за это есть реальная ответственность.
+  </aside>
+</section>
+
+<!-- 31. Q&A + QR -->
+<section class="qa">
+  <img class="qa-img" src="assets/template/qa.png" alt="Q&amp;A">
+  <div class="qr">
+    <div class="code" data-qr="pagesUrl"></div>
+    <div class="cap">
+      <b>Презентация, оба воркфлоу и инструкция</b>
+      <span class="url" data-url="pagesUrl"></span>
+    </div>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="config.js"></script>
+<script src="presentation/reveal/dist/reveal.js"></script>
+<script src="presentation/reveal/plugin/notes/notes.js"></script>
+<script src="presentation/reveal/plugin/zoom/zoom.js"></script>
+<script src="presentation/js/qrcode-generator.js"></script>
+<script src="presentation/js/qr.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0.02,
+    minScale: 0.2,
+    maxScale: 2.0,
+
+    center: false,
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'none',
+
+    // презентация показывается с проектора — управление с клавиатуры и пультом
+    controls: true,
+    progress: true,
+    overview: true,
+    touch: true,
+
+    plugins: [RevealNotes, RevealZoom]
+  });
+</script>
+</body>
+</html>

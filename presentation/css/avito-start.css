@@ -1,0 +1,1145 @@
+/* ==========================================================================
+   Avito Start — тема для reveal.js
+   Собрана по шаблону «Шаблон Avito Start.pptx»:
+   палитра, Manrope, вертушка из четырёх квадратов, наклонные плашки,
+   крупные номера разделов, лого в левом нижнем углу.
+   Холст: 1280x720 (шаблон 720x405 pt, масштаб 1.7778).
+   ========================================================================== */
+
+@import url("../fonts/manrope.css");
+
+:root {
+  /* фирменная палитра */
+  --black: #000000;
+  --white: #ffffff;
+  --green: #00e160;
+  --purple: #965eeb;
+  --blue: #05aaff;
+  --red: #ff3f53;
+  --grey: #757575;
+  --orange: #fa7b17;
+
+  /* светлые заливки из шаблона */
+  --green-tint: #c9ffbf;
+  --purple-tint: #dfcef3;
+  --blue-tint: #badafc;
+  --red-tint: #f8c1c6;
+  --paper: #f2f2f2;
+
+  /* сетка слайда */
+  --pad-x: 43px;
+  --pad-top: 60px;
+  --title-size: 43px;
+  --lead-size: 25px;
+  --body-size: 21px;
+  --small-size: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   База
+   -------------------------------------------------------------------------- */
+
+.reveal {
+  font-family: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: var(--body-size);
+  font-weight: 500;
+  color: var(--black);
+  letter-spacing: -0.005em;
+}
+
+.reveal-viewport {
+  background: var(--white);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  height: 100%;
+  padding: var(--pad-top) var(--pad-x) 74px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* reveal.js выставляет активному слайду display:block ИНЛАЙН-стилем,
+   поэтому здесь без !important не обойтись: иначе флекс не включается
+   и вся раскладка слипается в верхнюю половину экрана.
+   Скрытым слайдам reveal ставит display:none — их мы не трогаем. */
+.reveal .slides > section.present,
+.reveal .slides > section > section.present {
+  display: flex !important;
+}
+
+.reveal .slides section > * {
+  flex: 0 0 auto;
+}
+
+/* основной контентный блок занимает всё, что осталось под заголовком,
+   иначе слайд «повисает» в верхней половине экрана */
+.reveal .slides section > .cards,
+.reveal .slides section > .timeline,
+.reveal .slides section > .split,
+.reveal .slides section > .compare,
+.reveal .slides section > .speaker,
+.reveal .slides section > .steps,
+.reveal .slides section > .numlist,
+.reveal .slides section > .duo,
+.reveal .slides section > .diagram,
+.reveal .slides section > .qr {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* а вот плашка-вывод всегда прижата к низу */
+.reveal .slides section > .callout {
+  flex: 0 0 auto;
+}
+
+/* лого в левом нижнем углу — как в шаблоне (x=24pt, y=376pt, w=71pt) */
+.reveal .slides section:not(.bare)::after {
+  content: "";
+  position: absolute;
+  left: var(--pad-x);
+  bottom: 26px;
+  width: 126px;
+  height: 18px;
+  background: url("../../assets/avito-start-logo.png") left center / contain no-repeat;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* на цветных и тёмных слайдах лого выворачиваем в белый */
+.reveal .slides section.invert:not(.bare)::after {
+  background-image: url("../../assets/avito-start-logo-white.png");
+}
+
+/* на полноэкранной картинке лого только мешает */
+.reveal .slides section.figure-full::after {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Типографика
+   -------------------------------------------------------------------------- */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: inherit;
+  color: inherit;
+  text-transform: none;
+  text-shadow: none;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin: 0;
+}
+
+/* заголовок слайда */
+.reveal h2 {
+  font-size: var(--title-size);
+  font-weight: 800;
+  margin-bottom: 26px;
+}
+
+/* заголовок титульного слайда */
+.reveal h1 {
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1.04;
+}
+
+.reveal h3 {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.reveal h4 {
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.reveal p {
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+
+.reveal p:last-child {
+  margin-bottom: 0;
+}
+
+.reveal .lead {
+  font-size: var(--lead-size);
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 62ch;
+}
+
+.reveal .small {
+  font-size: var(--small-size);
+  line-height: 1.4;
+}
+
+.reveal .muted {
+  color: var(--grey);
+}
+
+.reveal b,
+.reveal strong {
+  font-weight: 800;
+}
+
+.reveal code {
+  font-family: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--paper);
+  border-radius: 6px;
+  padding: 0.12em 0.36em;
+}
+
+.reveal a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+}
+
+/* цветной текст */
+.t-green  { color: var(--green); }
+.t-purple { color: var(--purple); }
+.t-blue   { color: var(--blue); }
+.t-red    { color: var(--red); }
+.t-grey   { color: var(--grey); }
+.t-white  { color: var(--white); }
+
+/* инвертированный (цветной/тёмный) слайд */
+.reveal section.invert,
+.reveal section.invert h1,
+.reveal section.invert h2,
+.reveal section.invert h3 {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   Фирменные декорации
+   -------------------------------------------------------------------------- */
+
+/* вертушка из четырёх повёрнутых квадратов */
+.pinwheel {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: url("../../assets/pinwheel.png") center / contain no-repeat;
+  pointer-events: none;
+}
+
+.pinwheel.br { right: 40px;  bottom: 40px; }
+.pinwheel.tr { right: 40px;  top: 40px; }
+.pinwheel.bl { left: 40px;   bottom: 40px; }
+.pinwheel.lg { width: 380px; height: 380px; }
+.pinwheel.sm { width: 150px; height: 150px; }
+
+/* маленький цветной квадрат-маркер */
+.chip {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  flex: 0 0 auto;
+}
+
+.chip.green  { background: var(--green); }
+.chip.purple { background: var(--purple); }
+.chip.blue   { background: var(--blue); }
+.chip.red    { background: var(--red); }
+
+/* полоска из четырёх квадратов */
+.chiprow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+/* наклонная цветная плашка */
+.plate {
+  position: absolute;
+  border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Графика из шаблона (assets/template/)
+   -------------------------------------------------------------------------- */
+
+/* декоративная картинка, вынесенная за поток: вырезанные фигуры, блобы, иконки */
+.deco {
+  position: absolute;
+  pointer-events: none;
+}
+
+.reveal .deco img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  background: none;
+  margin: 0;
+}
+
+/* иконка внутри карточки */
+.reveal .card .icon {
+  height: 104px;
+  width: auto;
+  align-self: flex-start;
+  margin: 0 0 6px;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+/* иконка в заголовке колонки сравнения */
+.reveal .compare .col h4 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.reveal .compare .col h4 img {
+  height: 46px;
+  width: auto;
+  border: none;
+  box-shadow: none;
+  background: none;
+  margin: 0;
+}
+
+/* Q&A — готовая композиция из шаблона вместо набранного текста */
+.reveal .qa-img {
+  max-height: 44%;
+  width: auto;
+  align-self: flex-start;
+  margin: 0 0 40px;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+/* --------------------------------------------------------------------------
+   Схема (inline SVG)
+   -------------------------------------------------------------------------- */
+
+.diagram {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.diagram text {
+  font-family: inherit;
+  text-anchor: middle;
+}
+
+.diagram .lbl {
+  font-size: 25px;
+  font-weight: 800;
+  fill: var(--black);
+}
+
+.diagram .lbl-w {
+  fill: var(--white);
+}
+
+.diagram .sub {
+  font-size: 17px;
+  font-weight: 500;
+  fill: var(--grey);
+}
+
+.diagram .note {
+  font-size: 18px;
+  font-weight: 700;
+  fill: var(--red);
+  text-anchor: start;
+}
+
+.diagram .flow {
+  fill: none;
+  stroke: var(--black);
+  stroke-width: 3;
+}
+
+.diagram .back {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 3;
+  stroke-dasharray: 9 7;
+}
+
+/* --------------------------------------------------------------------------
+   Крупная цифра в текстовой колонке
+   -------------------------------------------------------------------------- */
+
+.bignum {
+  font-size: 130px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--purple);
+}
+
+/* --------------------------------------------------------------------------
+   Титульный слайд
+   -------------------------------------------------------------------------- */
+
+.title-slide {
+  justify-content: center;
+}
+
+.title-slide h1 {
+  max-width: 16ch;
+}
+
+.title-slide .subtitle {
+  margin-top: 28px;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--grey);
+}
+
+.title-slide .pinwheel {
+  right: -40px;
+  bottom: -40px;
+  width: 420px;
+  height: 420px;
+}
+
+/* --------------------------------------------------------------------------
+   Разделитель раздела: наклонная плашка + крупный номер
+   -------------------------------------------------------------------------- */
+
+.divider {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.divider .band {
+  position: relative;
+  display: inline-block;
+  padding: 26px 42px;
+  border-radius: 12px;
+  transform: rotate(-3deg);
+  max-width: 70%;
+}
+
+.divider .band h2 {
+  margin: 0;
+  font-size: 53px;
+  color: var(--white);
+}
+
+.divider .sectionno {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 190px;
+  height: 190px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  font-weight: 800;
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   Слайд с вопросом / крупной фразой
+   -------------------------------------------------------------------------- */
+
+.hero {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero .huge {
+  font-size: 86px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 17ch;
+}
+
+.hero .xl {
+  font-size: 150px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.hero .note {
+  margin-top: 30px;
+  font-size: 25px;
+  color: var(--grey);
+  max-width: 44ch;
+}
+
+/* --------------------------------------------------------------------------
+   Нумерованный список (слайд «О чём поговорим»)
+   -------------------------------------------------------------------------- */
+
+.numlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+
+.numlist .row {
+  display: flex;
+  gap: 22px;
+  align-items: baseline;
+}
+
+.numlist .n {
+  font-size: 37px;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 54px;
+}
+
+.numlist .txt {
+  font-size: 23px;
+  line-height: 1.35;
+  padding-top: 4px;
+}
+
+.numlist .row:nth-child(1) .n { color: var(--green); }
+.numlist .row:nth-child(2) .n { color: var(--purple); }
+.numlist .row:nth-child(3) .n { color: var(--blue); }
+.numlist .row:nth-child(4) .n { color: var(--red); }
+.numlist .row:nth-child(5) .n { color: var(--orange); }
+
+/* --------------------------------------------------------------------------
+   Карточки-блоки (2/3/4 в ряд)
+   -------------------------------------------------------------------------- */
+
+.cards {
+  display: grid;
+  gap: 24px;
+  align-content: center;
+}
+
+.cards.c2 { grid-template-columns: repeat(2, 1fr); }
+.cards.c3 { grid-template-columns: repeat(3, 1fr); }
+.cards.c4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card .cap {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.card .txt {
+  font-size: var(--small-size);
+  line-height: 1.4;
+  color: #2b2b2b;
+}
+
+/* карточка с заливкой */
+.card.filled {
+  padding: 26px;
+  border-radius: 12px;
+  background: var(--paper);
+  min-height: 200px;
+  justify-content: center;
+}
+
+.card.green  { background: var(--green-tint); }
+.card.purple { background: var(--purple-tint); }
+.card.blue   { background: var(--blue-tint); }
+.card.red    { background: var(--red-tint); }
+
+/* --------------------------------------------------------------------------
+   Горизонтальный таймлайн
+   -------------------------------------------------------------------------- */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-content: center;
+}
+
+.timeline.t3 { grid-template-columns: repeat(3, 1fr); }
+.timeline.t5 { grid-template-columns: repeat(5, 1fr); }
+
+.timeline .step {
+  border-radius: 12px;
+  padding: 22px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timeline .step .n {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.timeline .step .cap {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.timeline .step .txt {
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.timeline .step:nth-child(1) { background: var(--green-tint); }
+.timeline .step:nth-child(2) { background: var(--purple-tint); }
+.timeline .step:nth-child(3) { background: var(--blue-tint); }
+.timeline .step:nth-child(4) { background: var(--red-tint); }
+.timeline .step:nth-child(5) { background: var(--paper); }
+
+/* --------------------------------------------------------------------------
+   Вертикальный таймлайн (пошаговая инструкция)
+   -------------------------------------------------------------------------- */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.steps .step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.steps .step .n {
+  width: 46px;
+  height: 46px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--white);
+  flex: 0 0 auto;
+}
+
+.steps .step:nth-child(1) .n { background: var(--green); }
+.steps .step:nth-child(2) .n { background: var(--purple); }
+.steps .step:nth-child(3) .n { background: var(--blue); }
+.steps .step:nth-child(4) .n { background: var(--red); }
+.steps .step:nth-child(5) .n { background: var(--black); }
+
+.steps .step .body {
+  padding-top: 6px;
+}
+
+.steps .step .cap {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.steps .step .txt {
+  font-size: var(--small-size);
+  color: var(--grey);
+  line-height: 1.35;
+  margin-top: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Буллиты
+   -------------------------------------------------------------------------- */
+
+.bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 32px;
+  font-size: var(--body-size);
+  line-height: 1.35;
+}
+
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--green);
+}
+
+.bullets.tight {
+  gap: 22px;
+}
+
+.bullets.tight li {
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 38px;
+}
+
+.bullets.tight li::before {
+  width: 18px;
+  height: 18px;
+  top: 0.38em;
+}
+
+.bullets li:nth-child(2n)::before   { background: var(--purple); }
+.bullets li:nth-child(3n)::before   { background: var(--blue); }
+.bullets li:nth-child(4n)::before   { background: var(--red); }
+
+/* --------------------------------------------------------------------------
+   Сравнение в две колонки
+   -------------------------------------------------------------------------- */
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  align-content: center;
+}
+
+.compare .col {
+  padding: 26px;
+  border-radius: 12px;
+  min-height: 300px;
+}
+
+.compare .col.good { background: var(--green-tint); }
+.compare .col.bad  { background: var(--red-tint); }
+.compare .col.neutral { background: var(--paper); }
+
+.compare .col h4 {
+  margin-bottom: 14px;
+}
+
+.compare .col .bullets li {
+  font-size: var(--small-size);
+}
+
+.compare .col.good    .bullets li::before { background: var(--green); }
+.compare .col.bad     .bullets li::before { background: var(--red); }
+.compare .col.neutral .bullets li::before { background: var(--grey); }
+
+/* --------------------------------------------------------------------------
+   Слайды с картинкой
+   -------------------------------------------------------------------------- */
+
+/* картинка во весь слайд, без полей и заголовка */
+.reveal section.figure-full {
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.reveal section.figure-full img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  margin: 0;
+}
+
+/* подпись поверх картинки */
+.figcap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 22px;
+  background: var(--black);
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  max-width: 84%;
+}
+
+/* для вертикальных картинок подпись уходит на свободное поле слева */
+.figcap.left {
+  left: 40px;
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  text-align: left;
+  max-width: 24%;
+  line-height: 1.35;
+}
+
+/* картинка + текст в две колонки */
+.split {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.split.wide-left  { grid-template-columns: 1.6fr 1fr; }
+.split.wide-right { grid-template-columns: 1fr 1.6fr; }
+
+.split .pic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 0;
+}
+
+.split .pic img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  margin: 0;
+}
+
+.split .pic img.plain {
+  border-radius: 0;
+}
+
+.reveal .split .txtcol p {
+  font-size: var(--body-size);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Слайд про спикера
+   -------------------------------------------------------------------------- */
+
+.speaker {
+  display: grid;
+  grid-template-columns: 370px 1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.speaker .photo {
+  position: relative;
+}
+
+.speaker .photo img {
+  width: 370px;
+  height: 370px;
+  object-fit: cover;
+  object-position: 62% 40%;
+  border-radius: 14px;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+.speaker .role {
+  font-size: var(--small-size);
+  font-weight: 800;
+  color: var(--grey);
+  margin-bottom: 22px;
+}
+
+.speaker .facts {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.speaker .fact {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.speaker .fact .chip {
+  margin-top: 3px;
+}
+
+.speaker .fact .txt {
+  font-size: var(--body-size);
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   QR-блок
+   -------------------------------------------------------------------------- */
+
+.qr {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.qr .code {
+  width: 210px;
+  height: 210px;
+  flex: 0 0 auto;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 10px;
+  box-sizing: border-box;
+  transform: rotate(4deg);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.16);
+}
+
+.qr .code img,
+.qr .code svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+.qr.stack {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.qr .cap {
+  font-size: var(--body-size);
+  line-height: 1.4;
+}
+
+.qr .cap .url {
+  display: block;
+  margin-top: 10px;
+  font-size: var(--small-size);
+  color: var(--grey);
+  word-break: break-all;
+}
+
+/* --------------------------------------------------------------------------
+   Плашка-подпись под заголовком
+   -------------------------------------------------------------------------- */
+
+.kicker {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  background: var(--black);
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-bottom: 16px;
+}
+
+.kicker.green  { background: var(--green);  color: var(--black); }
+.kicker.purple { background: var(--purple); }
+.kicker.blue   { background: var(--blue); }
+.kicker.red    { background: var(--red); }
+
+/* --------------------------------------------------------------------------
+   Демо-слайд с iframe
+   -------------------------------------------------------------------------- */
+
+.reveal section.demo {
+  padding: 0;
+}
+
+.reveal section.demo iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  background: var(--white);
+}
+
+.demo-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--black);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 800;
+  padding: 8px 14px;
+  border-bottom-right-radius: 10px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Плейсхолдеры (блок про кружок — заполнится позже)
+   -------------------------------------------------------------------------- */
+
+.ph {
+  border: 3px dashed #c9c9c9;
+  border-radius: 12px;
+  color: #9a9a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--small-size);
+  font-weight: 700;
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.ph.grow {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.reveal section.placeholder h2 {
+  color: #9a9a9a;
+}
+
+/* --------------------------------------------------------------------------
+   Чёрная плашка-вывод внизу слайда
+   -------------------------------------------------------------------------- */
+
+.callout {
+  margin-top: auto;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 20px 26px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.callout b {
+  color: var(--green);
+}
+
+/* --------------------------------------------------------------------------
+   Две крупные цифры рядом
+   -------------------------------------------------------------------------- */
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  margin-bottom: 24px;
+  align-content: center;
+}
+
+.duo .pane {
+  border-radius: 12px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.duo .pane.green { background: var(--green-tint); }
+.duo .pane.blue  { background: var(--blue-tint); }
+
+.duo .xnum {
+  font-size: 110px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.duo .cap {
+  font-size: 25px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.duo .txt {
+  font-size: var(--small-size);
+  line-height: 1.4;
+  margin-top: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Финальный слайд Q & A
+   -------------------------------------------------------------------------- */
+
+.reveal section.qa {
+  justify-content: center;
+}
+
+.reveal section.qa .qword {
+  font-size: 190px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0 0 40px;
+}
+
+.reveal section.qa .qr {
+  max-width: 660px;
+}
+
+/* --------------------------------------------------------------------------
+   Номер слайда и элементы управления reveal
+   -------------------------------------------------------------------------- */
+
+.reveal .slide-number {
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--grey);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 3px 9px;
+  right: 22px;
+  bottom: 70px;
+}
+
+.reveal .controls {
+  color: var(--black);
+}
+
+.reveal .progress {
+  height: 5px;
+  color: var(--green);
+}
+
+.reveal section.invert ~ .slide-number {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   Печать / экспорт в PDF
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .reveal .slides section:not(.bare)::after {
+    opacity: 1;
+  }
+}

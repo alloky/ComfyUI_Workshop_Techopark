@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Градиентный спуск: ищем √2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5f7fb;
+  --sheet:#ffffff;
+  --grid-major:#ccd9ee;
+  --grid-minor:#e7eef8;
+  --ink:#16223a;
+  --muted:#5e6b82;
+  --pen:#2b4ea8;
+  --pen-fade:#8fa8dc;
+  --pen-wash:#e6ecf9;
+  --pencil:#c33c1c;
+  --pencil-wash:#fbe8e2;
+  --mint:#0a7d5f;
+  --rule:#dde3ed;
+  --focus:#2b4ea8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101622;
+    --sheet:#18202e;
+    --grid-major:#2a3950;
+    --grid-minor:#1e2837;
+    --ink:#e9eefb;
+    --muted:#98a6bf;
+    --pen:#7ea6ff;
+    --pen-fade:#41567f;
+    --pen-wash:#1e2b43;
+    --pencil:#ff8a64;
+    --pencil-wash:#33211c;
+    --mint:#46d3a6;
+    --rule:#26314699;
+    --focus:#7ea6ff;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101622;
+  --sheet:#18202e;
+  --grid-major:#2a3950;
+  --grid-minor:#1e2837;
+  --ink:#e9eefb;
+  --muted:#98a6bf;
+  --pen:#7ea6ff;
+  --pen-fade:#41567f;
+  --pen-wash:#1e2b43;
+  --pencil:#ff8a64;
+  --pencil-wash:#33211c;
+  --mint:#46d3a6;
+  --rule:#26314699;
+  --focus:#7ea6ff;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Golos Text","Segoe UI",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 64px}
+
+/* ---------- шапка ---------- */
+.top{
+  display:flex;flex-wrap:wrap;gap:20px 32px;
+  align-items:flex-end;justify-content:space-between;
+  padding-bottom:18px;border-bottom:1px solid var(--rule);
+}
+h1{
+  font-size:clamp(26px,4vw,38px);
+  font-weight:800;letter-spacing:-.02em;line-height:1.05;margin:0 0 6px;
+}
+.sub{margin:0;color:var(--muted);max-width:46ch;font-size:15px}
+.readout{text-align:right;min-width:230px;flex:0 0 auto}
+.readout .num{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:clamp(28px,5vw,40px);font-weight:700;
+  letter-spacing:-.03em;line-height:1;white-space:nowrap;
+  color:var(--pen-fade);
+}
+.readout .num .hit{color:var(--mint)}
+.readout .num.bad{color:var(--pencil)}
+.readout .cap{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* ---------- сетка страницы ---------- */
+.main{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:28px;margin-top:22px}
+.lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,1fr);gap:28px;margin-top:28px}
+@media(max-width:900px){
+  .main,.lower{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ---------- графики ---------- */
+.plot{--fs:13px;--sw:1;display:block;width:100%;height:auto;overflow:visible}
+@media(max-width:640px){.plot{--fs:19px;--sw:1.5}}
+.plot text{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:var(--fs);fill:var(--muted)}
+.gr-min{stroke:var(--grid-minor);stroke-width:var(--sw)}
+.gr-maj{stroke:var(--grid-major);stroke-width:var(--sw)}
+.axis{stroke:var(--ink);stroke-width:calc(var(--sw)*1.4);opacity:.75}
+.curve{fill:none;stroke:var(--pen);stroke-width:calc(var(--sw)*2.6);stroke-linecap:round;stroke-linejoin:round}
+.curve-f{fill:none;stroke:var(--mint);stroke-width:calc(var(--sw)*2.6);stroke-linecap:round;stroke-linejoin:round}
+.tangent{stroke:var(--pencil);stroke-width:calc(var(--sw)*2);stroke-dasharray:7 5;stroke-linecap:round}
+.drop{stroke:var(--pen-fade);stroke-width:calc(var(--sw)*1.4);stroke-dasharray:3 4}
+.target{stroke:var(--mint);stroke-width:calc(var(--sw)*1.4);stroke-dasharray:6 5;opacity:.85}
+.plot text.target-lbl{fill:var(--mint);font-weight:700}
+.trail{fill:var(--pen-fade)}
+.ball{fill:var(--pen);stroke:var(--sheet);stroke-width:calc(var(--sw)*2.4)}
+.ball-f{fill:var(--mint);stroke:var(--sheet);stroke-width:calc(var(--sw)*2.4)}
+.plot text.ball-lbl{fill:var(--pen);font-weight:700}
+.plot text.ball-lbl-f{fill:var(--mint);font-weight:700}
+.arrow{stroke:var(--pencil);stroke-width:calc(var(--sw)*2.6);stroke-linecap:round}
+.arw-head{fill:var(--pencil)}
+.plot text.plot-title{fill:var(--ink);font-family:"Golos Text",sans-serif;font-weight:600;font-size:calc(var(--fs)*1.08)}
+figure{margin:0}
+figcaption{color:var(--muted);font-size:13.5px;margin-top:6px;max-width:60ch}
+
+/* ---------- панель формул ---------- */
+.panel{
+  background:var(--sheet);border:1px solid var(--rule);border-radius:10px;
+  padding:18px 18px 16px;
+}
+.panel h2{font-size:15px;font-weight:700;margin:0 0 12px;letter-spacing:-.01em}
+.rules{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13.5px;line-height:1.85}
+.rules .r{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.rules .lhs{white-space:nowrap}
+.rules .note{font-family:"Golos Text",sans-serif;font-size:12.5px;color:var(--muted)}
+hr.sep{border:0;border-top:1px solid var(--rule);margin:16px 0}
+.stepno{
+  display:inline-block;font-size:12.5px;font-weight:600;color:var(--pen);
+  background:var(--pen-wash);border-radius:4px;padding:2px 8px;margin-bottom:10px;
+}
+.calc{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13.5px;line-height:1.9;overflow-x:auto}
+.calc .line{white-space:nowrap}
+.calc .k{color:var(--muted)}
+.blue{color:var(--pen);font-weight:700}
+.red{color:var(--pencil);font-weight:700}
+.green{color:var(--mint);font-weight:700}
+.status{
+  margin-top:14px;font-size:13.5px;border-left:3px solid var(--rule);
+  padding:2px 0 2px 12px;color:var(--muted);
+}
+.status.warn{border-color:var(--pencil);color:var(--pencil)}
+.status.ok{border-color:var(--mint);color:var(--mint)}
+
+/* ---------- управление ---------- */
+.controls{
+  margin-top:26px;padding:18px 20px;background:var(--sheet);
+  border:1px solid var(--rule);border-radius:10px;
+  display:flex;flex-wrap:wrap;gap:22px 34px;align-items:flex-end;
+}
+.ctl{flex:1 1 240px;min-width:220px}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13.5px;font-weight:600;margin-bottom:8px}
+.ctl label .val{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--pen)}
+.ctl .hint{font-size:12.5px;color:var(--muted);margin-top:7px;min-height:1.2em}
+.ctl .hint.warn{color:var(--pencil)}
+input[type=range]{width:100%;accent-color:var(--pen);height:22px;cursor:pointer}
+.buttons{display:flex;gap:10px;flex:0 0 auto;flex-wrap:wrap}
+button{
+  font-family:inherit;font-size:14.5px;font-weight:600;
+  padding:10px 20px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--pen);background:var(--sheet);color:var(--pen);
+  transition:background .12s,color .12s;
+}
+button:hover{background:var(--pen-wash)}
+button.primary{background:var(--pen);color:var(--sheet)}
+button.primary:hover{opacity:.88}
+button.ghost{border-color:var(--rule);color:var(--muted)}
+button.ghost:hover{background:var(--pen-wash);color:var(--ink)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+button:disabled{opacity:.4;cursor:not-allowed}
+
+/* ---------- таблица ---------- */
+.tablewrap{max-height:330px;overflow:auto;border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
+table{border-collapse:collapse;width:100%;font-family:"JetBrains Mono",monospace;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 12px;text-align:right;white-space:nowrap}
+th{
+  position:sticky;top:0;background:var(--sheet);color:var(--muted);
+  font-weight:500;font-size:11.5px;border-bottom:1px solid var(--rule);
+}
+td:first-child,th:first-child{text-align:left;color:var(--muted)}
+tbody tr:nth-child(even){background:var(--pen-wash)}
+tbody td.x{color:var(--pen);font-weight:700}
+tbody td.g{color:var(--pencil)}
+.empty{padding:16px;color:var(--muted);font-size:13.5px}
+
+/* ---------- что попробовать ---------- */
+.try{margin-top:28px;border-top:1px solid var(--rule);padding-top:20px}
+.try h2{font-size:15px;font-weight:700;margin:0 0 14px}
+.try ul{list-style:none;margin:0;padding:0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.try li{font-size:14px;color:var(--muted);line-height:1.5}
+.try b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+.try code{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--pen)}
+.try button{margin-top:8px;padding:6px 12px;font-size:13px}
+
+/* ---------- компактный режим для встраивания в слайд (?embed=1) ----------
+   Включается только внутри презентации; открытая напрямую страница
+   работает как раньше, со всеми блоками. */
+html.embed, html.embed body{height:100%;overflow:hidden}
+html.embed .wrap{max-width:none;padding:18px 26px 12px;height:100%;display:flex;flex-direction:column}
+html.embed .top{padding-bottom:12px}
+html.embed h1{font-size:28px;margin-bottom:4px}
+html.embed .sub{font-size:14px;max-width:52ch}
+html.embed .readout .num{font-size:34px}
+html.embed .main{margin-top:14px;flex:1 1 auto;min-height:0}
+html.embed .main figure{min-height:0;display:flex;flex-direction:column}
+html.embed .main .plot{flex:1 1 auto;min-height:0}
+html.embed .controls{margin-top:12px}
+html.embed .lower,
+html.embed .try{display:none}
+</style>
+<script>
+  // включаем компактный режим до первой отрисовки, чтобы не было прыжка
+  if (location.search.indexOf('embed') !== -1) {
+    document.documentElement.className += ' embed';
+  }
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Градиентный спуск</h1>
+      <p class="sub">Компьютер не умеет извлекать корни. Зато он умеет скатываться вниз по склону — и так находит √2 сам.</p>
+    </div>
+    <div class="readout">
+      <div class="num" id="bigNum">2.5000000</div>
+      <div class="cap" id="bigCap">начальная догадка</div>
+    </div>
+  </header>
+
+  <div class="main">
+    <figure>
+      <svg class="plot" id="lossChart" viewBox="0 0 700 430" role="img" aria-label="График функции ошибки и положение точки"></svg>
+      <figcaption>Ошибка <b>L(x)</b>: чем ниже точка, тем ближе x к корню. Красная пунктирная линия — касательная, её наклон и есть градиент.</figcaption>
+    </figure>
+
+    <section class="panel" aria-live="polite">
+      <h2>Что считаем</h2>
+      <div class="rules">
+        <div class="r"><span class="lhs">f(x) = x² − 2</span><span class="note">хотим f(x) = 0</span></div>
+        <div class="r"><span class="lhs">L(x) = (x² − 2)²</span><span class="note">ошибка: квадрат промаха</span></div>
+        <div class="r"><span class="lhs">L′(x) = 4x(x² − 2)</span><span class="note">наклон в точке x</span></div>
+        <div class="r"><span class="lhs">x<sub>n+1</sub> = x<sub>n</sub> − η·L′(x<sub>n</sub>)</span><span class="note">шаг против наклона</span></div>
+      </div>
+      <hr class="sep">
+      <div class="stepno" id="stepBadge">Шаг 1</div>
+      <div class="calc" id="calc"></div>
+      <div class="status" id="status">Нажмите «Сделать шаг».</div>
+    </section>
+  </div>
+
+  <section class="controls">
+    <div class="ctl">
+      <label for="x0">Начальная догадка x₀ <span class="val" id="x0v">2.50</span></label>
+      <input type="range" id="x0" min="-3" max="3" step="0.05" value="2.5">
+      <div class="hint" id="x0hint">Откуда начинаем спуск.</div>
+    </div>
+    <div class="ctl">
+      <label for="lr">Длина шага η <span class="val" id="lrv">0.020</span></label>
+      <input type="range" id="lr" min="0.001" max="0.2" step="0.001" value="0.02">
+      <div class="hint" id="lrhint">Насколько сильно слушаемся наклона.</div>
+    </div>
+    <div class="buttons">
+      <button class="primary" id="stepBtn">Сделать шаг</button>
+      <button id="playBtn">Запустить</button>
+      <button class="ghost" id="resetBtn">Начать заново</button>
+    </div>
+  </section>
+
+  <div class="lower">
+    <figure>
+      <svg class="plot" id="funcChart" viewBox="0 0 520 300" role="img" aria-label="График исходной функции и текущая точка"></svg>
+      <figcaption>Та же точка на исходной функции <b>f(x) = x² − 2</b>. Спуск закончится, когда она сядет на ось.</figcaption>
+    </figure>
+
+    <div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>n</th><th>xₙ</th><th>f(xₙ)</th><th>L(xₙ)</th><th>L′(xₙ)</th></tr></thead>
+          <tbody id="tbody"><tr><td colspan="5" class="empty">Шаги появятся здесь.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <section class="try">
+    <h2>Что стоит попробовать на уроке</h2>
+    <ul>
+      <li><b>Шаг слишком большой</b>η = 0.15: точка перепрыгивает минимум и улетает. <button class="ghost" data-x0="2.5" data-lr="0.15">Показать</button></li>
+      <li><b>Шаг слишком маленький</b>η = 0.002: движемся правильно, но мучительно долго. <button class="ghost" data-x0="2.5" data-lr="0.002">Показать</button></li>
+      <li><b>Другая сторона</b>x₀ = −2: тот же алгоритм найдёт второй корень, −√2. <button class="ghost" data-x0="-2" data-lr="0.02">Показать</button></li>
+      <li><b>Ровно на вершине</b>x₀ = 0: наклон равен нулю, спуск не начинается вовсе. <button class="ghost" data-x0="0" data-lr="0.02">Показать</button></li>
+    </ul>
+  </section>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ===================== математика ===================== */
+var SQ2 = Math.SQRT2;
+function f(x){ return x*x - 2; }
+function L(x){ var v = x*x - 2; return v*v; }
+function dL(x){ return 4*x*(x*x - 2); }
+
+var SUB = ["₀","₁","₂","₃","₄","₅","₆","₇","₈","₉"];
+function sub(n){
+  var s = String(Math.abs(Math.round(n))), out = "";
+  for (var i=0;i<s.length;i++) out += SUB[+s[i]];
+  return out;
+}
+function fmt(v, d){
+  d = (d === undefined) ? 4 : d;
+  if (!isFinite(v)) return "∞";
+  var s;
+  if (Math.abs(v) >= 1e5) s = v.toExponential(2);
+  else s = v.toFixed(d);
+  return s.replace("-", "−");
+}
+
+/* ===================== состояние ===================== */
+var S = {
+  x0: 2.5, lr: 0.02,
+  x: 2.5,          // текущее устоявшееся значение
+  xa: 2.5,         // анимируемое значение
+  n: 0,
+  rows: [],
+  playing: false,
+  status: "start", // start | running | diverged | stuck | done | maxed
+  anim: null,
+  gen: 0
+};
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ===================== помощники SVG ===================== */
+var NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent){
+  var e = document.createElementNS(NS, tag);
+  if (attrs) for (var k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function niceStep(range, target){
+  var raw = range / target;
+  var mag = Math.pow(10, Math.floor(Math.log(raw)/Math.LN10));
+  var norm = raw / mag, s;
+  if (norm < 1.5) s = 1; else if (norm < 3.5) s = 2; else if (norm < 7.5) s = 5; else s = 10;
+  return s * mag;
+}
+function tickLabel(v, step){
+  var d = step >= 1 ? 0 : (step >= 0.1 ? 1 : 2);
+  var s = v.toFixed(d);
+  if (parseFloat(s) === 0) s = "0";
+  return s.replace("-", "−");
+}
+
+/* ===================== построение графика ===================== */
+function buildChart(svg, cfg){
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+  var W = cfg.W, H = cfg.H, P = cfg.pad;
+  var pw = W - P.l - P.r, ph = H - P.t - P.b;
+  var xmin = cfg.xmin, xmax = cfg.xmax, ymin = cfg.ymin, ymax = cfg.ymax;
+  var SX = function(x){ return P.l + (x - xmin)/(xmax - xmin)*pw; };
+  var SY = function(y){ return P.t + (ymax - y)/(ymax - ymin)*ph; };
+
+  var defs = el("defs", null, svg);
+  var cp = el("clipPath", {id: cfg.id + "-clip"}, defs);
+  el("rect", {x:P.l, y:P.t, width:pw, height:ph}, cp);
+  var mk = el("marker", {id: cfg.id + "-arw", viewBox:"0 0 10 10", refX:"8", refY:"5",
+                         markerWidth:"4", markerHeight:"4", orient:"auto-start-reverse"}, defs);
+  el("path", {d:"M0,1 L9,5 L0,9 z", "class":"arw-head"}, mk);
+
+  /* сетка */
+  var g = el("g", null, svg);
+  var xs = niceStep(xmax - xmin, 6), ys = niceStep(ymax - ymin, 5);
+  var i, v;
+  for (v = Math.ceil(xmin/(xs/5))*(xs/5); v <= xmax + 1e-9; v += xs/5)
+    el("line", {x1:SX(v), y1:P.t, x2:SX(v), y2:P.t+ph, "class":"gr-min"}, g);
+  for (v = Math.ceil(ymin/(ys/5))*(ys/5); v <= ymax + 1e-9; v += ys/5)
+    el("line", {x1:P.l, y1:SY(v), x2:P.l+pw, y2:SY(v), "class":"gr-min"}, g);
+  for (v = Math.ceil(xmin/xs)*xs; v <= xmax + 1e-9; v += xs)
+    el("line", {x1:SX(v), y1:P.t, x2:SX(v), y2:P.t+ph, "class":"gr-maj"}, g);
+  for (v = Math.ceil(ymin/ys)*ys; v <= ymax + 1e-9; v += ys)
+    el("line", {x1:P.l, y1:SY(v), x2:P.l+pw, y2:SY(v), "class":"gr-maj"}, g);
+
+  /* подписи осей */
+  for (v = Math.ceil(xmin/xs)*xs; v <= xmax + 1e-9; v += xs){
+    if (Math.abs(v) < 1e-9) continue;
+    el("text", {x:SX(v), y:P.t+ph+18, "text-anchor":"middle"}, g).textContent = tickLabel(v, xs);
+  }
+  for (v = Math.ceil(ymin/ys)*ys; v <= ymax + 1e-9; v += ys){
+    if (Math.abs(v) < 1e-9) continue;
+    el("text", {x:P.l-8, y:SY(v)+4, "text-anchor":"end"}, g).textContent = tickLabel(v, ys);
+  }
+
+  /* цели: ±√2 */
+  var tg = el("g", {"clip-path":"url(#"+cfg.id+"-clip)"}, svg);
+  [SQ2, -SQ2].forEach(function(r){
+    if (r < xmin || r > xmax) return;
+    el("line", {x1:SX(r), y1:P.t, x2:SX(r), y2:P.t+ph, "class":"target"}, tg);
+  });
+  if (SQ2 <= xmax)
+    el("text", {x:SX(SQ2)+6, y:P.t+14, "class":"target-lbl"}, svg).textContent = "√2";
+  if (-SQ2 >= xmin)
+    el("text", {x:SX(-SQ2)-6, y:P.t+14, "text-anchor":"end", "class":"target-lbl"}, svg).textContent = "−√2";
+
+  /* оси */
+  if (ymin < 0 && ymax > 0) el("line", {x1:P.l, y1:SY(0), x2:P.l+pw, y2:SY(0), "class":"axis"}, svg);
+  if (xmin < 0 && xmax > 0) el("line", {x1:SX(0), y1:P.t, x2:SX(0), y2:P.t+ph, "class":"axis"}, svg);
+  el("text", {x:P.l+pw, y:SY(0)-9, "text-anchor":"end"}, svg).textContent = "x";
+
+  /* кривая */
+  var d = "", N = 400;
+  for (i = 0; i <= N; i++){
+    var xx = xmin + (xmax - xmin)*i/N;
+    var yy = cfg.fn(xx);
+    if (yy > ymax + (ymax-ymin)) yy = ymax + (ymax-ymin);
+    if (yy < ymin - (ymax-ymin)) yy = ymin - (ymax-ymin);
+    d += (i ? "L" : "M") + SX(xx).toFixed(2) + " " + SY(yy).toFixed(2) + " ";
+  }
+  var clipG = el("g", {"clip-path":"url(#"+cfg.id+"-clip)"}, svg);
+  el("path", {d:d, "class": cfg.curveClass}, clipG);
+
+  /* заголовок графика */
+  el("text", {x:P.l, y:P.t-6, "class":"plot-title"}, svg).textContent = cfg.title;
+
+  /* динамические слои */
+  var dyn = el("g", {"clip-path":"url(#"+cfg.id+"-clip)"}, svg);
+  var trail = el("g", {"class":"trail"}, dyn);
+  var tangent = el("line", {"class":"tangent", opacity:0}, dyn);
+  var arrow = el("line", {"class":"arrow", opacity:0,
+                          "marker-end":"url(#"+cfg.id+"-arw)"}, dyn);
+  var drop = el("line", {"class":"drop"}, dyn);
+  var ball = el("circle", {r:7, "class": cfg.ballClass}, dyn);
+  var lbl  = el("text", {"class": cfg.lblClass}, dyn);
+
+  return {
+    SX:SX, SY:SY, xmin:xmin, xmax:xmax, ymin:ymin, ymax:ymax, P:P, pw:pw, ph:ph,
+    trail:trail, tangent:tangent, arrow:arrow, drop:drop, ball:ball, lbl:lbl
+  };
+}
+
+/* ===================== виды ===================== */
+var lossSvg = document.getElementById("lossChart");
+var funcSvg = document.getElementById("funcChart");
+var lossC = null, funcC = null;
+
+function rebuild(){
+  var span = Math.max(2.5, Math.abs(S.x0) + 0.6);
+  var ytop = Math.max(5, L(S.x0) * 1.15);
+
+  lossC = buildChart(lossSvg, {
+    id:"loss", W:700, H:430, pad:{l:52,r:20,t:26,b:34},
+    xmin:-span, xmax:span, ymin:-ytop*0.12, ymax:ytop,
+    fn:L, curveClass:"curve", ballClass:"ball", lblClass:"ball-lbl",
+    title:"L(x) = (x² − 2)²  —  ошибка"
+  });
+
+  var fmax = Math.max(2.5, f(span));
+  funcC = buildChart(funcSvg, {
+    id:"func", W:520, H:300, pad:{l:46,r:18,t:26,b:34},
+    xmin:-span, xmax:span, ymin:-2.8, ymax:fmax,
+    fn:f, curveClass:"curve-f", ballClass:"ball-f", lblClass:"ball-lbl-f",
+    title:"f(x) = x² − 2"
+  });
+  drawDynamic();
+}
+
+function drawDynamic(){
+  var x = S.xa;
+  var visited = S.rows.map(function(r){ return r.x; });
+
+  /* --- график ошибки --- */
+  var c = lossC;
+  var cx = c.SX(clamp(x, c.xmin, c.xmax)), cy = c.SY(clamp(L(x), c.ymin, c.ymax));
+  c.ball.setAttribute("cx", cx);
+  c.ball.setAttribute("cy", cy);
+  c.drop.setAttribute("x1", cx); c.drop.setAttribute("y1", cy);
+  c.drop.setAttribute("x2", cx); c.drop.setAttribute("y2", c.SY(0));
+  c.lbl.setAttribute("x", cx + 11);
+  c.lbl.setAttribute("y", cy - 11);
+  c.lbl.textContent = "x" + sub(S.n);
+
+  /* касательная */
+  var g = dL(x), y0 = L(x);
+  var span2 = Math.min((c.xmax - c.xmin) * 0.26,
+                       (c.ymax - c.ymin) / Math.max(Math.abs(g), 1e-9));
+  c.tangent.setAttribute("opacity", S.status === "diverged" ? 0 : 1);
+  c.tangent.setAttribute("x1", c.SX(x - span2));
+  c.tangent.setAttribute("y1", c.SY(y0 - g*span2));
+  c.tangent.setAttribute("x2", c.SX(x + span2));
+  c.tangent.setAttribute("y2", c.SY(y0 + g*span2));
+
+  /* стрелка следующего шага по оси x */
+  var nx = x - S.lr * g;
+  if (S.status === "diverged" || Math.abs(nx - x) < 1e-4){
+    c.arrow.setAttribute("opacity", 0);
+  } else {
+    c.arrow.setAttribute("opacity", 1);
+    c.arrow.setAttribute("x1", c.SX(clamp(x, c.xmin, c.xmax)));
+    c.arrow.setAttribute("y1", c.SY(c.ymin*0.5));
+    c.arrow.setAttribute("x2", c.SX(clamp(nx, c.xmin, c.xmax)));
+    c.arrow.setAttribute("y2", c.SY(c.ymin*0.5));
+  }
+
+  /* след */
+  while (c.trail.firstChild) c.trail.removeChild(c.trail.firstChild);
+  visited.forEach(function(vx, i){
+    if (vx < c.xmin || vx > c.xmax) return;
+    el("circle", {cx:c.SX(vx), cy:c.SY(clamp(L(vx), c.ymin, c.ymax)),
+                  r:3.5, opacity: 0.25 + 0.6*(i+1)/visited.length}, c.trail);
+  });
+
+  /* --- график функции --- */
+  var k = funcC;
+  var kx = k.SX(clamp(x, k.xmin, k.xmax)), ky = k.SY(clamp(f(x), k.ymin, k.ymax));
+  k.ball.setAttribute("cx", kx);
+  k.ball.setAttribute("cy", ky);
+  k.drop.setAttribute("x1", kx); k.drop.setAttribute("y1", ky);
+  k.drop.setAttribute("x2", kx); k.drop.setAttribute("y2", k.SY(0));
+  k.lbl.setAttribute("x", kx + 11);
+  k.lbl.setAttribute("y", ky + (f(x) >= 0 ? -11 : 18));
+  k.lbl.textContent = "f = " + fmt(f(x), 3);
+  k.tangent.setAttribute("opacity", 0);
+  k.arrow.setAttribute("opacity", 0);
+  while (k.trail.firstChild) k.trail.removeChild(k.trail.firstChild);
+}
+
+function clamp(v, a, b){ return v < a ? a : (v > b ? b : v); }
+
+/* ===================== текстовые панели ===================== */
+var calcBox   = document.getElementById("calc");
+var badge     = document.getElementById("stepBadge");
+var statusBox = document.getElementById("status");
+var bigNum    = document.getElementById("bigNum");
+var bigCap    = document.getElementById("bigCap");
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+function renderPanel(){
+  var x = S.x, n = S.n;
+  var g = dL(x), nx = x - S.lr*g;
+  var inner = x*x - 2;
+
+  badge.textContent = "Шаг " + (n + 1);
+
+  if (S.status === "diverged"){
+    calcBox.innerHTML =
+      '<div class="line"><span class="k">x' + sub(n) + ' = </span><span class="red">' + fmt(x, 2) + '</span></div>' +
+      '<div class="line"><span class="k">точка вылетела за пределы графика</span></div>';
+  } else {
+    var L1 = '<div class="line"><span class="k">x' + sub(n) + '&nbsp;&nbsp;&nbsp;&nbsp;= </span><span class="blue">' + fmt(x, 5) + '</span></div>';
+    var L2 = '<div class="line"><span class="k">L(x' + sub(n) + ')&nbsp;= </span>' + fmt(L(x), 5) + ' <span class="k">— ошибка</span></div>';
+    var L3 = '<div class="line"><span class="k">L′(x' + sub(n) + ') = </span>4·' + fmt(x,4) + '·(' + fmt(x,4) + '² − 2) = <span class="red">' + fmt(g, 5) + '</span></div>';
+    var L4 = '<div class="line"><span class="k">x' + sub(n+1) + '&nbsp;&nbsp;&nbsp;&nbsp;= </span>' + fmt(x,5) + ' − ' + fmt(S.lr,3) + '·(<span class="red">' + fmt(g,5) + '</span>) = <span class="blue">' + fmt(nx, 5) + '</span></div>';
+    calcBox.innerHTML = L1 + L2 + L3 + L4;
+  }
+
+  /* большое число сверху */
+  var target = x < 0 ? -SQ2 : SQ2;
+  var xs = fmt(x, 7), ts = fmt(target, 7);
+  if (S.status === "diverged" || !isFinite(x)){
+    bigNum.className = "num bad";
+    bigNum.textContent = fmt(x, 2);
+    bigCap.textContent = "спуск разошёлся";
+  } else {
+    var m = 0;
+    while (m < xs.length && m < ts.length && xs[m] === ts[m]) m++;
+    var digits = 0;
+    for (var i = 0; i < m; i++) if (/[0-9]/.test(xs[i])) digits++;
+    var afterDot = Math.max(0, digits - 1);
+    bigNum.className = "num";
+    bigNum.innerHTML = '<span class="hit">' + esc(xs.slice(0, m)) + '</span>' + esc(xs.slice(m));
+    bigCap.textContent = S.n === 0
+      ? "начальная догадка"
+      : (afterDot >= 7 ? "совпало с √2 полностью" : "верных знаков после запятой: " + afterDot);
+  }
+
+  /* статус */
+  var cls = "status", msg;
+  if (S.status === "diverged"){
+    cls += " warn";
+    msg = "Шаг слишком большой: точка перепрыгнула минимум и улетела. Уменьшите η.";
+  } else if (S.status === "stuck"){
+    cls += " warn";
+    msg = "Наклон равен нулю — спуск остановился, хотя мы не в минимуме. Сдвиньте x₀.";
+  } else if (S.status === "maxed"){
+    msg = "300 шагов пройдено. При таком маленьком η спуск идёт очень медленно — увеличьте шаг.";
+  } else if (S.status === "done"){
+    cls += " ok";
+    msg = "Готово: ошибка практически ноль, x совпал с √2.";
+  } else if (Math.abs(g) < 1e-9 && S.n === 0){
+    cls += " warn";
+    msg = "В этой точке наклон нулевой — спуск не сдвинется с места.";
+  } else if (S.lr > 0.125){
+    cls += " warn";
+    msg = "η > 0.125: около корня шаги станут расходиться. Хороший повод посмотреть, что будет.";
+  } else if (S.n === 0){
+    msg = "Нажмите «Сделать шаг» или «Запустить».";
+  } else {
+    msg = "До √2 осталось " + fmt(Math.abs(Math.abs(x) - SQ2), 6) + ".";
+  }
+  statusBox.className = cls;
+  statusBox.textContent = msg;
+}
+
+var tbody = document.getElementById("tbody");
+function renderTable(){
+  if (!S.rows.length){
+    tbody.innerHTML = '<tr><td colspan="5" class="empty">Шаги появятся здесь.</td></tr>';
+    return;
+  }
+  var html = "";
+  for (var i = 0; i < S.rows.length; i++){
+    var r = S.rows[i];
+    html += "<tr><td>" + r.n + "</td>" +
+            '<td class="x">' + fmt(r.x, 5) + "</td>" +
+            "<td>" + fmt(f(r.x), 5) + "</td>" +
+            "<td>" + fmt(L(r.x), 5) + "</td>" +
+            '<td class="g">' + fmt(r.g, 4) + "</td></tr>";
+  }
+  tbody.innerHTML = html;
+  var w = tbody.parentNode.parentNode;
+  w.scrollTop = w.scrollHeight;
+}
+
+/* ===================== шаг и анимация ===================== */
+function canStep(){
+  return S.status !== "diverged" && S.status !== "stuck" &&
+         S.status !== "done" && S.status !== "maxed" && !S.anim;
+}
+
+function doStep(){
+  if (!canStep()) return false;
+  var x = S.x, g = dL(x);
+
+  if (Math.abs(g) < 1e-10){
+    S.status = (Math.abs(L(x)) < 1e-10) ? "done" : "stuck";
+    renderPanel(); syncButtons();
+    return false;
+  }
+
+  var nx = x - S.lr * g;
+  S.rows.push({n:S.n, x:x, g:g});
+  S.n += 1;
+
+  if (!isFinite(nx) || Math.abs(nx) > 1e4){
+    S.x = nx; S.xa = Math.sign(nx || 1) * 1e4;
+    S.status = "diverged";
+    stopPlay(); renderPanel(); renderTable(); drawDynamic(); syncButtons();
+    return false;
+  }
+
+  animate(x, nx, function(){
+    S.x = nx;
+    if (Math.abs(Math.abs(nx) - SQ2) < 1e-7) S.status = "done";
+    else if (S.n >= 300) S.status = "maxed";
+    else S.status = "running";
+    renderPanel(); renderTable(); syncButtons();
+    if (S.playing && canStep()) S.anim = setTimeout(function(){ S.anim = null; doStep(); }, 380);
+    else if (S.playing) stopPlay();
+  });
+  renderTable();
+  return true;
+}
+
+function animate(from, to, done){
+  if (reduceMotion){ S.xa = to; drawDynamic(); done(); return; }
+  var t0 = performance.now(), dur = 620, myGen = S.gen;
+  S.anim = true;
+  function frame(t){
+    if (myGen !== S.gen) return;            // состояние сброшено — кадр устарел
+    var p = Math.min(1, (t - t0)/dur);
+    var e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3)/2;
+    S.xa = from + (to - from)*e;
+    drawDynamic();
+    if (p < 1) requestAnimationFrame(frame);
+    else { S.anim = null; S.xa = to; drawDynamic(); done(); }
+  }
+  requestAnimationFrame(frame);
+}
+
+function reset(){
+  S.gen += 1;
+  if (S.anim && typeof S.anim !== "boolean") clearTimeout(S.anim);
+  S.anim = null;
+  stopPlay();
+  S.x = S.x0; S.xa = S.x0; S.n = 0; S.rows = []; S.status = "start";
+  rebuild(); renderPanel(); renderTable(); syncButtons();
+}
+
+/* ===================== управление ===================== */
+var stepBtn = document.getElementById("stepBtn");
+var playBtn = document.getElementById("playBtn");
+var resetBtn = document.getElementById("resetBtn");
+var x0Inp = document.getElementById("x0"), lrInp = document.getElementById("lr");
+var x0Val = document.getElementById("x0v"), lrVal = document.getElementById("lrv");
+var lrHint = document.getElementById("lrhint"), x0Hint = document.getElementById("x0hint");
+
+function startPlay(){
+  if (!canStep()) return;
+  S.playing = true; syncButtons(); doStep();
+}
+function stopPlay(){
+  S.playing = false;
+  if (S.anim && typeof S.anim !== "boolean"){ clearTimeout(S.anim); S.anim = null; }
+  syncButtons();
+}
+function syncButtons(){
+  playBtn.textContent = S.playing ? "Пауза" : "Запустить";
+  var dead = (S.status === "diverged" || S.status === "stuck" ||
+              S.status === "done" || S.status === "maxed");
+  stepBtn.disabled = dead;
+  playBtn.disabled = dead;
+}
+
+stepBtn.addEventListener("click", function(){ stopPlay(); doStep(); });
+playBtn.addEventListener("click", function(){ S.playing ? stopPlay() : startPlay(); });
+resetBtn.addEventListener("click", reset);
+
+x0Inp.addEventListener("input", function(){
+  S.x0 = parseFloat(x0Inp.value);
+  x0Val.textContent = S.x0.toFixed(2).replace("-", "−");
+  x0Hint.textContent = Math.abs(S.x0) < 1e-9
+    ? "Ровно на вершине: наклон нулевой."
+    : (S.x0 < 0 ? "Слева от нуля — придём к −√2." : "Справа от нуля — придём к √2.");
+  reset();
+});
+lrInp.addEventListener("input", function(){
+  S.lr = parseFloat(lrInp.value);
+  lrVal.textContent = S.lr.toFixed(3);
+  if (S.lr > 0.125){ lrHint.className = "hint warn"; lrHint.textContent = "Слишком большой шаг: спуск разойдётся."; }
+  else if (S.lr < 0.006){ lrHint.className = "hint"; lrHint.textContent = "Очень осторожно — понадобится много шагов."; }
+  else { lrHint.className = "hint"; lrHint.textContent = "Насколько сильно слушаемся наклона."; }
+  renderPanel(); drawDynamic();
+});
+
+Array.prototype.forEach.call(document.querySelectorAll(".try button"), function(b){
+  b.addEventListener("click", function(){
+    x0Inp.value = b.getAttribute("data-x0");
+    lrInp.value = b.getAttribute("data-lr");
+    lrInp.dispatchEvent(new Event("input"));
+    x0Inp.dispatchEvent(new Event("input"));
+    document.querySelector(".controls").scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block:"center"});
+    setTimeout(startPlay, 500);
+  });
+});
+
+document.addEventListener("keydown", function(e){
+  var t = e.target.tagName;
+  if (t === "INPUT" || t === "BUTTON") return;
+  if (e.code === "Space" || e.code === "Enter"){ e.preventDefault(); stopPlay(); doStep(); }
+});
+
+var rt;
+window.addEventListener("resize", function(){
+  clearTimeout(rt);
+  rt = setTimeout(function(){ rebuild(); }, 150);
+});
+
+/* старт */
+reset();
+})();
+</script>
+</body>
+</html>
