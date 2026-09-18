@@ -2,9 +2,10 @@
 
 Материалы мастер-класса для Технопарка МФТИ.
 
-- **Презентация** — [`presentation.html`](presentation.html)
+- **Лендинг (живёт на GitHub Pages)** — https://alloky.github.io/ComfyUI_Workshop_Techopark/
+- **Презентация** — [alloky.github.io/ComfyUI_Workshop_Techopark/presentation.html](https://alloky.github.io/ComfyUI_Workshop_Techopark/presentation.html) или локально [`presentation.html`](presentation.html)
 - **Воркфлоу** — папка [`ComfyUI_Workflows/`](ComfyUI_Workflows/)
-- **Лендинг** — [`index.html`](index.html)
+- **Репозиторий** — https://github.com/alloky/ComfyUI_Workshop_Techopark
 
 Ниже — инструкция, как поставить себе всё то же самое и запустить оба воркфлоу.
 
@@ -165,8 +166,9 @@ Manager → **Install Missing Custom Nodes** → поставить всё, чт
 ├── config.js                 ссылки на Pages и репозиторий — правятся здесь
 ├── README.md                 этот файл
 ├── assets/                   картинки для лендинга и слайдов
-│   └── template/             графика из шаблона Avito Start: иконки,
-│                             вырезанные фигуры, композиция Q&A
+│   ├── template/             графика из шаблона Avito Start: иконки,
+│   │                         вырезанные фигуры, композиция Q&A
+│   └── program/img/          иллюстрации и QR программы ИИ-кружка (слайды 6–11)
 ├── presentation/
 │   ├── css/                  тема оформления
 │   ├── fonts/                Manrope

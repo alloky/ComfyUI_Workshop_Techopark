@@ -6,12 +6,10 @@
 
 window.WORKSHOP = {
   // Адрес лендинга на GitHub Pages. Именно он зашивается в QR-коды.
-  // Пример: "https://ivanov.github.io/ComfyUI_Workshop/"
-  pagesUrl: "https://USERNAME.github.io/ComfyUI_Workshop/",
+  pagesUrl: "https://alloky.github.io/ComfyUI_Workshop_Techopark/",
 
   // Репозиторий с воркфлоу и инструкцией.
-  // Пример: "https://github.com/ivanov/ComfyUI_Workshop"
-  repoUrl: "https://github.com/USERNAME/ComfyUI_Workshop",
+  repoUrl: "https://github.com/alloky/ComfyUI_Workshop_Techopark",
 
   // Подпись под QR-кодом на финальном слайде.
   title: "Материалы мастер-класса",

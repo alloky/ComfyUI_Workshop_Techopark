@@ -1,5 +1,6 @@
 # исходники, которые не нужны на GitHub Pages
 _source/
+.serena
 
 # системное
 .DS_Store

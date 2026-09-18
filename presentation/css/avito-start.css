@@ -804,7 +804,7 @@
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 32px;
-  align-items: stretch;
+  align-items: center;
   min-height: 0;
 }
 
