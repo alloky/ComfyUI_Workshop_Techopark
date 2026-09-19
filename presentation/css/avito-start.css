@@ -845,7 +845,7 @@
 
 .speaker {
   display: grid;
-  grid-template-columns: 370px 1fr;
+  grid-template-columns: 1fr 370px;
   gap: 44px;
   align-items: center;
 }

@@ -85,29 +85,9 @@
   </aside>
 </section>
 
-<!-- 5. Спикер -->
-<!-- TODO: подставить имя, должность и факты о себе -->
-<section>
-  <h2>Кто это рассказывает</h2>
-  <div class="speaker">
-    <div class="photo">
-      <img src="assets/me2026.jpg" alt="Фотография спикера">
-    </div>
-    <div>
-      <div class="role">ДОЛЖНОСТЬ / КОМПАНИЯ / КОМАНДА</div>
-      <div class="facts">
-        <div class="fact"><span class="chip green"></span><span class="txt">Имя Фамилия</span></div>
-        <div class="fact"><span class="chip purple"></span><span class="txt">Чем занимаюсь каждый день</span></div>
-        <div class="fact"><span class="chip blue"></span><span class="txt">Что делал с генеративными моделями</span></div>
-        <div class="fact"><span class="chip red"></span><span class="txt">Несерьёзный факт, без которого никак</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 6. Программа ИИ-кружка: титул -->
 <section style="justify-content:center">
-  <h1>ИИ-кружок<br>от Авито</h1>
+  <h1 style="margin-bottom:64px">ИИ-кружок<br>от Авито</h1>
   <p class="lead" style="max-width:540px">Работай с данными, обучай модели и решай
   олимпиадные задачи вместе с&nbsp;действующими ML-инженерами
   и&nbsp;специалистами по&nbsp;ИИ в&nbsp;Авито</p>
@@ -283,6 +263,25 @@
   </div>
 </section>
 
+<!-- 5. Спикер -->
+<section>
+  <h2>Кто это рассказывает</h2>
+  <div class="speaker">
+    <div>
+      <div class="role">Бэкенд-разработчик на golang &middot; Инфраструктура Авито</div>
+      <div class="facts">
+        <div class="fact"><span class="chip green"></span><span class="txt">Иванин Виталий</span></div>
+        <div class="fact"><span class="chip purple"></span><span class="txt">Окончил магистратуру МФТИ на ФПМИ, кафедра компьютерной лингвистики, в 2022 году</span></div>
+        <div class="fact"><span class="chip blue"></span><span class="txt">Активно применяю ИИ в работе, pet-проектах и хобби</span></div>
+        <div class="fact"><span class="chip red"></span><span class="txt">А ещё я фанат хороших книг, манги, аниме и мастер по D&amp;D — для своих партий применяю, в том числе, генеративные модели</span></div>
+      </div>
+    </div>
+    <div class="photo">
+      <img src="assets/me2026.jpg" alt="Фотография спикера: Иванин Виталий">
+    </div>
+  </div>
+</section>
+
 <!-- 12. О чём поговорим -->
 <section>
   <div class="deco" style="right:-10px;bottom:0;width:580px">
@@ -296,7 +295,7 @@
     </div>
     <div class="row">
       <div class="n">2.</div>
-      <div class="txt"><b>ComfyUI</b>: ноды и провода</div>
+      <div class="txt"><b>ComfyUI</b>: вершины и рёбра графа</div>
     </div>
     <div class="row">
       <div class="n">3.</div>
@@ -388,13 +387,13 @@
 </section>
 
 <!-- ======================================================================
-     COMFYUI: НОДЫ И ПРОВОДА
+     COMFYUI: ВЕРШИНЫ И РЁБРА ГРАФА
      ====================================================================== -->
 
 <!-- 14. Разделитель 01 -->
 <section class="divider invert" data-background-color="#000000">
   <div class="band" style="background:var(--purple)">
-    <h2>ComfyUI:<br>ноды и провода</h2>
+    <h2>ComfyUI:<br>вершины и рёбра графа</h2>
   </div>
   <div class="sectionno" style="background:var(--green);color:#000">01</div>
 </section>
@@ -448,11 +447,105 @@
   </aside>
 </section>
 
-<!-- 17. Узел -->
+<!-- 16.5 Графы обработки данных -->
 <section>
-  <h2>Узел</h2>
+  <h2>Графы обработки данных в Comfy UI</h2>
+  <svg viewBox="0 0 1200 540" style="width:100%;height:auto" role="img"
+       aria-label="Схема графа воркфлоу: картинка и текст проходят через TextEncoder, Diffusion Model и VAE, результат показывается на экране">
+    <defs>
+      <marker id="wf-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#000"/>
+      </marker>
+    </defs>
+
+    <!-- рёбра -->
+    <g fill="none" stroke="#000" stroke-width="3">
+      <path d="M240,103 C420,103 480,83 642,83" marker-end="url(#wf-arr)"/>
+      <path d="M757,128 C757,180 760,200 760,232" marker-end="url(#wf-arr)"/>
+      <path d="M240,433 L322,433" marker-end="url(#wf-arr)"/>
+      <path d="M432,390 C432,330 520,292 638,292" marker-end="url(#wf-arr)"/>
+      <path d="M880,272 C950,245 930,150 818,128" marker-end="url(#wf-arr)"/>
+      <path d="M865,83 C1000,83 1068,160 1068,239" marker-end="url(#wf-arr)"/>
+    </g>
+    <g font-size="16" font-weight="600" fill="#757575"
+       style="paint-order:stroke;stroke:#fff;stroke-width:8;stroke-linejoin:round">
+      <text x="400" y="78">пиксели</text>
+      <text x="744" y="185" text-anchor="end">числовое представление</text>
+      <text x="468" y="300">условия</text>
+      <text x="975" y="135">пиксели</text>
+    </g>
+
+    <!-- порт-точки -->
+    <g fill="#fff" stroke="#000" stroke-width="2.5">
+      <circle cx="240" cy="103" r="6"/>
+      <circle cx="650" cy="83" r="6"/>
+      <circle cx="757" cy="126" r="6"/>
+      <circle cx="760" cy="235" r="6"/>
+      <circle cx="240" cy="433" r="6"/>
+      <circle cx="325" cy="433" r="6"/>
+      <circle cx="432" cy="390" r="6"/>
+      <circle cx="640" cy="292" r="6"/>
+      <circle cx="880" cy="272" r="6"/>
+      <circle cx="815" cy="126" r="6"/>
+      <circle cx="865" cy="83" r="6"/>
+      <circle cx="1070" cy="242" r="6"/>
+    </g>
+
+    <!-- вершины: заголовок-цветная плашка + тело -->
+    <g font-family="Manrope, 'Segoe UI', sans-serif">
+      <g transform="translate(25,60)">
+        <rect width="215" height="86" rx="14" fill="#fff" stroke="#000" stroke-width="3"/>
+        <path d="M0,14 a14,14 0 0 1 14,-14 h187 a14,14 0 0 1 14,14 v22 h-215 z" fill="#00e160"/>
+        <text x="107" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="#000">Загрузи картинку</text>
+        <text x="107" y="62" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">image</text>
+      </g>
+      <g transform="translate(25,390)">
+        <rect width="215" height="86" rx="14" fill="#fff" stroke="#000" stroke-width="3"/>
+        <path d="M0,14 a14,14 0 0 1 14,-14 h187 a14,14 0 0 1 14,14 v22 h-215 z" fill="#05aaff"/>
+        <text x="107" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="#000">Загрузи текст</text>
+        <text x="107" y="62" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">prompt</text>
+      </g>
+      <g transform="translate(325,390)">
+        <rect width="215" height="86" rx="14" fill="#fff" stroke="#000" stroke-width="3"/>
+        <path d="M0,14 a14,14 0 0 1 14,-14 h187 a14,14 0 0 1 14,14 v22 h-215 z" fill="#965eeb"/>
+        <text x="107" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="#000">Примени TextEncoder</text>
+        <text x="107" y="62" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">текст &rarr; условия</text>
+      </g>
+      <g transform="translate(640,235)">
+        <rect width="240" height="100" rx="14" fill="#fff" stroke="#000" stroke-width="3"/>
+        <path d="M0,14 a14,14 0 0 1 14,-14 h212 a14,14 0 0 1 14,14 v22 h-240 z" fill="#ff3f53"/>
+        <text x="120" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="#000">Примени Diffusion Model</text>
+        <text x="120" y="56" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">шум + условия &rarr;</text>
+        <text x="120" y="76" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">числовое представление</text>
+      </g>
+      <g transform="translate(650,40)">
+        <rect width="215" height="86" rx="14" fill="#fff" stroke="#000" stroke-width="3"/>
+        <path d="M0,14 a14,14 0 0 1 14,-14 h187 a14,14 0 0 1 14,14 v22 h-215 z" fill="#965eeb"/>
+        <text x="107" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="#000">Примени VAE</text>
+        <text x="107" y="54" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">пиксели &harr;</text>
+        <text x="107" y="73" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">числовое представление</text>
+      </g>
+      <g transform="translate(955,242)">
+        <rect width="220" height="86" rx="14" fill="#fff" stroke="#000" stroke-width="3"/>
+        <path d="M0,14 a14,14 0 0 1 14,-14 h192 a14,14 0 0 1 14,14 v22 h-220 z" fill="#00e160"/>
+        <text x="110" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="#000">Покажи изображение</text>
+        <text x="110" y="62" text-anchor="middle" font-size="15" font-weight="500" fill="#757575">результат</text>
+      </g>
+    </g>
+  </svg>
+  <aside class="notes">
+    Одна картинка на слайде: данные текут слева направо. Картинка кодируется
+    в числовое представление, текст — в условия, диффузия рисует
+    в числовом представлении, VAE раскодирует обратно в пиксели.
+    Это и есть весь воркфлоу из пяти-шести вершин.
+  </aside>
+</section>
+
+<!-- 17. Вершина графа -->
+<section>
+  <h2>Вершина графа</h2>
   <div class="split wide-left">
-    <div class="pic"><img src="assets/crop_node.png" alt="Крупный план узла «Загрузить изображение»"></div>
+    <div class="pic"><img src="assets/crop_node.png" alt="Крупный план вершины «Загрузить изображение»"></div>
     <div class="txtcol">
       <ul class="bullets tight">
         <li>Название</li>
@@ -462,26 +555,26 @@
     </div>
   </div>
   <aside class="notes">
-    Один узел — одно действие. Этот просто открывает картинку с диска.
+    Одна вершина — одно действие. Этот просто открывает картинку с диска.
     Показать пальцем: заголовок, крутилки, точки по бокам.
   </aside>
 </section>
 
-<!-- 18. Провода -->
+<!-- 18. Рёбра графа -->
 <section>
-  <h2>Провода</h2>
+  <h2>Рёбра графа</h2>
   <div class="split wide-left">
-    <div class="pic"><img src="assets/crop_wires.png" alt="Провода между узлами в ComfyUI"></div>
+    <div class="pic"><img src="assets/crop_wires.png" alt="Рёбра между вершинами в ComfyUI"></div>
     <div class="txtcol">
       <ul class="bullets tight">
-        <li>Связывают данные между узлами</li>
-        <li>Одни и те же данные можно направить во&nbsp;множество узлов одновременно</li>
+        <li>Связывают данные между вершинами</li>
+        <li>Одни и те же данные можно направить во&nbsp;множество вершин одновременно</li>
       </ul>
     </div>
   </div>
   <aside class="notes">
-    Показать, как тянется провод и как один выход разводится на несколько узлов.
-    Данные при этом не «расходуются» — картинка может пойти и в превью, и в следующую ноду.
+    Показать, как тянется ребро и как один выход разводится на несколько вершин.
+    Данные при этом не «расходуются» — картинка может пойти и в превью, и в следующую вершину.
   </aside>
 </section>
 
@@ -489,7 +582,7 @@
 <section class="figure-full invert" data-background-color="#1e1e1e">
   <img src="ComfyUI_Workflows/screenshots/meme_generation_workflow.png"
        alt="Полный воркфлоу генерации мема в ComfyUI">
-  <div class="figcap">Мем целиком &mdash; пять нод</div>
+  <div class="figcap">Преобразователь мемов &mdash; всего 4 вершины!</div>
   <aside class="notes">
     Обвести взглядом три зоны: что загружаем слева, что делаем в центре, что сохраняем справа.
   </aside>
@@ -502,17 +595,17 @@
     <div class="card filled green">
       <img class="icon" src="assets/template/bubble.png" alt="">
       <div class="cap">Переводчик</div>
-      <div class="txt"><code>qwen_3_4b</code></div>
+      <div class="txt">TextEncoder (<code>qwen_3_4b</code>) &mdash; превращает текст в&nbsp;числа</div>
     </div>
     <div class="card filled purple">
       <img class="icon" src="assets/template/pill.png" alt="">
       <div class="cap">Художник</div>
-      <div class="txt"><code>flux-2-klein-4b</code></div>
+      <div class="txt">Diffusion Model (<code>flux-2-klein-4b</code>) &mdash; основной генератор картинки (в&nbsp;виде чисел)</div>
     </div>
     <div class="card filled blue">
       <img class="icon" src="assets/template/gem.png" alt="">
       <div class="cap">Проявитель</div>
-      <div class="txt"><code>flux2-vae</code></div>
+      <div class="txt">VAE (<code>flux2-vae</code>) &mdash; преобразователь численного представления в&nbsp;полноценную картинку (и&nbsp;наоборот)</div>
     </div>
   </div>
   <aside class="notes">
@@ -550,14 +643,14 @@
   </aside>
 </section>
 
-<!-- 22. Сабграф -->
+<!-- 22. Подграф -->
 <section>
-  <h2>Сабграф</h2>
+  <h2>Подграф</h2>
   <div class="split wide-left">
-    <div class="pic"><img src="assets/crop_subgraph.png" alt="Нода-сабграф Image Edit в ComfyUI"></div>
+    <div class="pic"><img src="assets/crop_subgraph.png" alt="Вершина-подграф Image Edit в ComfyUI"></div>
     <div class="txtcol">
       <div class="bignum">17</div>
-      <p class="lead">нод спрятано внутри этой одной</p>
+      <p class="lead">вершин спрятано внутри этой одной</p>
       <img src="assets/template/squares.png" alt=""
            style="width:130px;margin-top:34px;border:none;box-shadow:none;background:none">
     </div>
@@ -611,7 +704,7 @@
   <aside class="notes">
     Про промпт: работает список требований, а не «сделай красиво».
     Отдельным пунктом — про руки, иначе вырастет лишняя.
-    Вокруг работающей ноды бежит рамка — видно, где мы сейчас.
+    Вокруг работающей вершины бежит рамка — видно, где мы сейчас.
   </aside>
 </section>
 
@@ -644,22 +737,22 @@
     <div class="step">
       <div class="n">01</div>
       <div class="cap">Референсы</div>
-      <div class="txt">Персонажи и стиль&nbsp;&mdash; картинками</div>
+      <div class="txt">Персонажи и стиль задаём картинками</div>
     </div>
     <div class="step">
       <div class="n">02</div>
-      <div class="cap">Три кадра</div>
-      <div class="txt">Каждый отдельно</div>
+      <div class="cap">Генерируем три кадра</div>
+      <div class="txt">Каждый отдельно, своей частью графа</div>
     </div>
     <div class="step">
       <div class="n">03</div>
       <div class="cap">Реплики</div>
-      <div class="txt">Вторым проходом</div>
+      <div class="txt">Вторым проходом добавляем каждому кадру реплику персонажа</div>
     </div>
     <div class="step">
       <div class="n">04</div>
       <div class="cap">Страница</div>
-      <div class="txt">Склейка на белом листе</div>
+      <div class="txt">Склеиваем три кадра на белом фоне</div>
     </div>
   </div>
 </section>
@@ -673,7 +766,7 @@
     <div class="txtcol">
       <ul class="bullets tight">
         <li>Фото &rarr; контур (<b>Canny</b>)</li>
-        <li>Модель повторяет жест</li>
+        <li>Модель принимает на вход силуэт и применяет его к&nbsp;персонажу</li>
       </ul>
     </div>
   </div>
@@ -692,7 +785,7 @@
     <div class="txtcol">
       <ul class="bullets tight">
         <li>Вырезали только лицо</li>
-        <li>Иначе копируются и пальцы</li>
+        <li>Иначе могут быть галлюцинации &mdash; например копирование позы или&nbsp;жестов из&nbsp;этого входа</li>
       </ul>
     </div>
   </div>
@@ -710,8 +803,8 @@
                           alt="Пайплайн: на готовый кадр дорисовывается речевая реплика"></div>
     <div class="txtcol">
       <ul class="bullets tight">
-        <li>Сначала чистый кадр</li>
-        <li>Потом текст&nbsp;&mdash; дословно</li>
+        <li>Сначала генерируем чистый кадр</li>
+        <li>Потом сверху дорисовываем реплику</li>
       </ul>
       <img src="assets/template/bubble.png" alt=""
            style="width:150px;margin-top:34px;border:none;box-shadow:none;background:none">
@@ -737,7 +830,7 @@
     </div>
   </div>
   <aside class="notes">
-    Здесь нейросети уже нет вообще — обычная вёрстка нодами.
+    Здесь нейросети уже нет вообще — обычная вёрстка вершинами.
     Белый лист, два стыка, поля. Всё.
   </aside>
 </section>
@@ -748,16 +841,16 @@
   <div class="duo">
     <div class="pane green">
       <div class="xnum">5</div>
-      <div class="cap">нод</div>
+      <div class="cap">вершин</div>
     </div>
     <div class="pane blue">
       <div class="xnum">40</div>
-      <div class="cap">нод</div>
-      <div class="txt">5 групп &middot; 4 сабграфа &middot; 62 провода</div>
+      <div class="cap">вершин</div>
+      <div class="txt">5 групп &middot; 4 сабграфа &middot; 62 ребра</div>
     </div>
   </div>
   <aside class="notes">
-    Каждая нода в обеих схемах одинаково простая. Отличается только количество.
+    Каждая вершина в обеих схемах одинаково простая. Отличается только количество.
     Никакой магии в большой схеме нет — её собирали по кусочку.
   </aside>
 </section>
@@ -784,20 +877,27 @@
   <h2>Честно о границах</h2>
   <div class="compare">
     <div class="col neutral">
-      <h4><img src="assets/template/cross.png" alt="">Пока выходит плохо</h4>
+      <h4><svg width="52" height="46" viewBox="0 0 52 46" aria-hidden="true" style="flex:0 0 auto">
+        <path d="M26,3 L50,43 L2,43 Z" fill="#ffd21f" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="23.5" y="15" width="5" height="15" rx="2" fill="#000"/>
+        <circle cx="26" cy="36.5" r="3" fill="#000"/>
+      </svg>Пока выходит плохо</h4>
       <ul class="bullets">
-        <li>Руки и пальцы</li>
-        <li>Надписи внутри картинки</li>
-        <li>«Ровно пять предметов»</li>
+        <li>Мелкие детали (например жесты) &mdash; лучше передавать отдельными картинками или&nbsp;силуэтами</li>
+        <li>Надписи могут галлюцинировать &mdash; лучше накладывать алгоритмом или&nbsp;вручную</li>
+        <li>В&nbsp;целом качество локальных моделей на&nbsp;слабом железе сильно уступает облачным</li>
       </ul>
     </div>
-    <div class="col bad">
+    <div class="col bad" style="display:flex;flex-direction:column">
       <h4><img src="assets/template/thumb-down.png" alt="">Так делать нельзя</h4>
       <ul class="bullets">
-        <li>Чужое лицо без разрешения</li>
-        <li>Выдавать за настоящее фото</li>
-        <li>Дипфейки</li>
+        <li>Использовать чужие фото без&nbsp;разрешения</li>
+        <li>Генерация запрещённого контента</li>
+        <li>Дипфейки (выдавать генерацию за&nbsp;настоящее фото)</li>
       </ul>
+      <p style="margin:auto 0 0;font-size:20px;font-weight:800;color:#000">
+        &laquo;С&nbsp;великой силой приходит великая ответственность&raquo;
+        &mdash;&nbsp;Бен&nbsp;Паркер&nbsp;(с)</p>
     </div>
   </div>
   <aside class="notes">
