@@ -676,38 +676,6 @@
   </aside>
 </section>
 
-<!-- 24. Что происходит на демо -->
-<section>
-  <h2>Что сейчас на экране</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="n">1</div>
-      <div class="body"><div class="cap">Перетаскиваем <code>.json</code> в окно</div></div>
-    </div>
-    <div class="step">
-      <div class="n">2</div>
-      <div class="body"><div class="cap">Две картинки</div></div>
-    </div>
-    <div class="step">
-      <div class="n">3</div>
-      <div class="body"><div class="cap">Промпт по пунктам</div></div>
-    </div>
-    <div class="step">
-      <div class="n">4</div>
-      <div class="body"><div class="cap">Run</div></div>
-    </div>
-    <div class="step">
-      <div class="n">5</div>
-      <div class="body"><div class="cap">Забираем из <code>output/</code></div></div>
-    </div>
-  </div>
-  <aside class="notes">
-    Про промпт: работает список требований, а не «сделай красиво».
-    Отдельным пунктом — про руки, иначе вырастет лишняя.
-    Вокруг работающей вершины бежит рамка — видно, где мы сейчас.
-  </aside>
-</section>
-
 <!-- ======================================================================
      СТРАНИЦА МАНГИ
      ====================================================================== -->
@@ -907,11 +875,11 @@
 </section>
 
 <!-- 35. Q&A + QR -->
-<section class="qa">
-  <img class="qa-img" src="assets/template/qa.png" alt="Q&amp;A">
-  <div class="qr">
-    <div class="code" data-qr="pagesUrl"></div>
-    <div class="cap">
+<section class="qa" style="flex-direction:row;align-items:center;justify-content:space-between;gap:48px">
+  <img class="qa-img" src="assets/template/qa.png" alt="Q&amp;A" style="max-height:52%;margin:0">
+  <div class="qr stack" style="align-items:center;max-width:none;flex:0 0 auto">
+    <div class="code" data-qr="pagesUrl" style="width:400px;height:400px;transform:none"></div>
+    <div class="cap" style="text-align:center">
       <b>Презентация, оба воркфлоу и инструкция</b>
       <span class="url" data-url="pagesUrl"></span>
     </div>
